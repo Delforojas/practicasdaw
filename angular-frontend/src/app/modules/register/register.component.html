@@ -1,0 +1,105 @@
+<div class="min-h-screen grid grid-cols-1 md:grid-cols-2">
+  <!-- Columna izquierda con imagen -->
+  <div class="hidden md:block bg-cover bg-center" 
+       style="background-image: url('login-register-assets/login-register.webp');">
+  </div>
+
+  <!-- Columna derecha con formulario -->
+  <div class="bg-[#e8dbc4] flex items-center justify-center p-8">
+    
+    <div class="w-full max-w-md">
+      <!-- Título -->
+      <h2 class="text-3xl font-bold text-green-800 mb-8 text-center">Registro</h2>
+
+      <!-- Formulario -->
+
+      <form class="space-y-4" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <input type="text" formControlName="username" placeholder="Usuario" class="w-full p-3 rounded bg-gray-200 focus:outline-none" />
+                     <div *ngIf="username?.invalid && username?.touched" class="text-red-500 text-xs mt-1">
+                     <span *ngIf="username?.errors?.['required']">El usuario es obligatorio.</span>
+                     </div>
+       
+              <!-- Nombre -->
+              <input type="text" name="full_name" formControlName="full_name" placeholder="Nombre" required
+               class="w-full p-3 rounded bg-gray-200 focus:outline-none" />
+                     <div *ngIf="full_name?.invalid && full_name?.touched" class="text-red-500 text-xs mt-1">
+                            <span *ngIf="full_name?.errors?.['required']">El nombre es obligatorio.</span>
+                     </div>
+
+              <!-- Apellidos -->
+              <input type="text" placeholder="Apellidos" formControlName="surname"
+                     class="w-full p-3 rounded bg-gray-200 focus:outline-none" />
+              
+              <!-- Email -->
+              <input type="email" id="email" name="email" formControlName="email" placeholder="Email" required
+                     class="w-full p-3 rounded bg-gray-200 focus:outline-none" />
+              <div *ngIf="email?.invalid && email?.touched" class="text-red-500 text-xs mt-1">
+                     <span *ngIf="email?.errors?.['required']">El email es obligatorio.</span>
+                     <span *ngIf="email?.errors?.['email']">Por favor, introduce un email válido.</span>
+              </div>
+              <!-- Dirección -->
+              <input type="text" placeholder="Dirección" formControlName="address" placeholder="Dirección"
+                     class="w-full p-3 rounded bg-gray-200 focus:outline-none" />
+
+              <!-- Código Postal + Población (grid de 2 col) -->
+              <div class="grid grid-cols-2 gap-4">
+                     <input type="text" placeholder="Código Postal" formControlName="postal_code"
+                            class="p-3 rounded bg-gray-200 focus:outline-none" />
+                     <input type="text" placeholder="Población" formControlName="city"
+                            class="p-3 rounded bg-gray-200 focus:outline-none" />
+              </div>
+
+              <!-- Teléfono -->
+              <input type="tel" id="phone" name="phone" formControlName="phone" placeholder="Teléfono" required
+                     class="w-full p-3 rounded bg-gray-200 focus:outline-none" />
+                     <div *ngIf="phone?.invalid && phone?.touched" class="text-red-500 text-xs mt-1">
+                            <span *ngIf="phone?.errors?.['pattern']">Por favor, introduce un número de teléfono válido.</span>
+                     </div>
+
+              <!-- Contraseña -->
+              <input type="password" id="password" name="password" formControlName="password" placeholder="Contraseña" required
+                     class="w-full p-3 rounded bg-green-50 border border-green-800 focus:outline-none" />
+                     <div *ngIf="password?.invalid && password?.touched" class="text-red-500 text-xs mt-1">
+                             <span *ngIf="password?.errors?.['required']">La contraseña es requerida.</span>
+                            <span *ngIf="password?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</span>
+                            <span *ngIf="password?.errors?.['pattern']">Debe incluir al menos una mayúscula y un carácter especial.</span>
+                     </div>
+              
+
+              <!-- Confirmar contraseña -->
+              <input type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword" placeholder="Repite contraseña" required
+                     class="w-full p-3 rounded bg-green-50 border border-green-800 focus:outline-none" />
+                     <div *ngIf="confirmPassword?.invalid && confirmPassword?.touched" class="text-red-500 text-xs mt-1">
+                            <span *ngIf="confirmPassword?.errors?.['required']">La confirmación de contraseña es
+                                   requerida.</span>
+                            </div>
+                     <div *ngIf="registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched"
+                     class="text-red-500 text-xs mt-1">
+                     Las contraseñas no coinciden.
+                     </div>
+               <div>
+                     <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+                     <p *ngIf="selectedFile" class="text-xs text-gray-600 mt-1">
+                     Archivo seleccionado: {{ selectedFile.name }}
+                     </p>
+              </div>
+
+                     <!-- Botón -->
+                     <button type="submit" [disabled]="isLoading "
+                            class="w-full bg-green-800 text-white font-semibold py-3 rounded shadow-md hover:bg-green-700 transition">
+                     Crear una Cuenta
+                     </button>
+                           
+                        
+
+                            
+      </form>
+
+      <!-- Enlace a login -->
+      <p class="mt-6 text-center text-sm text-gray-700">
+        ¿Ya tienes cuenta? 
+        <a href="/login" class="text-green-800 font-semibold hover:underline">Inicia Sesión</a>
+      </p>
+    </div>
+  </div>
+</div>

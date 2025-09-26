@@ -1,0 +1,68 @@
+
+<div class="w-full mx-auto my-6 rounded-3xl overflow-hidden shadow-2xl bg-cover bg-center flex flex-col items-center justify-center p-0 md:p-6 relative" style="background-image: url('user-menu-assets/carrousel-background.webp'); min-height: 350px;">
+  <div class="bg-white/40  w-full flex flex-col items-center py-8 px-2 md:px-10">
+    <img
+      src="user-menu-assets/namasteicon.svg"
+      alt="Icono Namasté"
+      class="w-16 h-16 text-gray-600 mb-4"
+    />
+    <div class="text-center mb-8">
+      <h2 class="text-2xl font-bold text-[#000000]">Clases</h2>
+      <p class="text-[#000000] text-base mt-1">Disfruta de clases donde conectar con el movimiento y tu respiración</p>
+    </div>
+    <div class="flex items-center justify-center gap-4 w-full">
+  <button (click)="prev()" aria-label="Anterior" class="hidden sm:flex items-center justify-center w-12 h-12 rounded-full border-2 bg-transparent text-[#485C46] border-[#485C46] hover:bg-[#e8dbc4] transition">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32" stroke="currentColor" class="w-8 h-8">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M20 8l-8 8 8 8" />
+        </svg>
+      </button>
+      @for (c of visibleImages; track c.name; let i = $index) {
+        <div
+          class="transition-transform duration-300 flex flex-col items-center"
+          [ngClass]="{
+            'scale-110 z-10': i === 1,
+            'scale-90 opacity-50 z-0': i !== 1
+          }"
+        >
+          <div class="relative flex flex-col items-center">
+            @if(i === 1) {
+              <div class="w-32 h-32 sm:w-56 sm:h-56 md:w-72 md:h-72 aspect-square rounded-2xl border-2 shadow-lg overflow-hidden flex items-center justify-center" style="border-color:#485C46; background:white;">
+                <img
+                  [src]="c.img"
+                  [alt]="c.name"
+                  class="w-full h-full object-cover block"
+                />
+              </div>
+            } @else {
+              <img
+                [src]="c.img"
+                [alt]="c.name"
+                class="w-28 md:w-36 rounded-2xl border-2 shadow-lg"
+                style="border-color:#485C46; background:white; display:block; object-fit:cover; cursor:pointer;"
+                (click)="i === 0 ? prev() : i === 2 ? next() : null"
+              />
+            }
+            @if(i === 1) {
+              <button
+                class="absolute left-1/2 -translate-x-1/2 bottom-6 px-3 py-1.5 bg-[#485C46] text-white rounded shadow-lg hover:bg-green-800 text-base md:text-lg font-semibold min-w-[40%] max-w-[70%]"
+                (click)="goTo(c.path)"
+              >
+                {{ c.name }}
+              </button>
+              <!-- Las rutas aún no existen, pero el botón funcionará cuando se creen -->
+            }
+          </div>
+          @if(i !== 1) {
+            <p class="text-center mt-2 text-sm md:text-base">{{ c.name }}</p>
+          }
+        </div>
+      }
+  <button (click)="next()" aria-label="Siguiente" class="hidden sm:flex items-center justify-center w-12 h-12 rounded-full border-2 bg-transparent text-[#485C46] border-[#485C46] hover:bg-[#e8dbc4] transition">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32" stroke="currentColor" class="w-8 h-8">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 8l8 8-8 8" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
