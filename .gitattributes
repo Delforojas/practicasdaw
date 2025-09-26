@@ -1,0 +1,11 @@
+# Angular
+angular-frontend/node_modules/** linguist-vendored
+angular-frontend/public/** linguist-vendored
+
+# Symfony
+symfony-backend/vendor/** linguist-vendored
+symfony-backend/var/** linguist-vendored
+symfony-backend/public/** linguist-vendored
+
+# --- Forzar lenguaje principal del front ---
+angular-frontend/** linguist-language=TypeScript
