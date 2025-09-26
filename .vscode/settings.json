@@ -1,0 +1,52 @@
+{
+  "editor.semanticHighlighting.enabled": true,
+
+  "editor.semanticTokenColorCustomizations": {
+    "rules": {
+      // === Semantic tokens (preferibles) ===
+      "parameter": "#FFA500",              // argumentos/parámetros
+      "variable": "#00FF00",               // variables locales
+      "property": "#87CEFA",               // this.algo / obj.algo
+      "function": "#FFD700",               // funciones libres
+      "method": "#FFD700",                 // métodos de clase
+      "class": "#00BFFF",                  // clases
+      "interface": "#7FDBFF",              // interfaces
+      "enum": "#FFB347",                   // enums
+      "typeParameter": "#C586C0",          // <T>
+      "namespace": "#B0E0E6",
+      "string": "#CE9178",
+      "number": "#B5CEA8",
+      "keyword": "#FF69B4",
+
+      // Modificadores útiles (si tu LSP los expone)
+      "*.readonly": { "fontStyle": "italic" },       // const / readonly
+      "*.declaration": { "fontStyle": "bold" }       // en la declaración
+    }
+  },
+
+  // === Fallback con TextMate (para lo que no cubra semantic) ===
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "variable.parameter",
+        "settings": { "foreground": "#FFA500" }
+      },
+      {
+        "scope": "entity.name.type.class",
+        "settings": { "foreground": "#00BFFF" }
+      },
+      {
+        "scope": "support.function",
+        "settings": { "foreground": "#FFD700" }
+      },
+      {
+        "scope": "meta.objectliteral.key",     // claves de objeto { key: ... }
+        "settings": { "foreground": "#FFA07A" }
+      },
+      {
+        "scope": "punctuation.bracket.square", // corchetes [ ] (arrays)
+        "settings": { "foreground": "#ADFF2F" }
+      }
+    ]
+  }
+}

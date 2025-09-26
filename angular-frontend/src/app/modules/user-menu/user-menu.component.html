@@ -1,0 +1,37 @@
+<div class="min-h-screen bg-[#e8dbc4] flex flex-col px-10 py-8">
+  <img
+  [src]="userData?.profileImage || 'assets/default-avatar.jpg'"
+  alt="Foto de perfil"
+  class="w-24 h-24 rounded-full object-cover"
+/>
+  <!-- El nombre será dinámico según el login -->
+  <h1 class="text-xl text-center text-[#485C46] mb-4">
+    Te damos la bienvenida a tu espacio <br />
+    {{ userData?.username || 'Invitado' }}
+  </h1>
+  <div class="text-right">
+          <a href="/user-profile" class="text-sm text-blue-800 hover:underline">Perfil de Usuario</a>
+  </div>
+
+  <!-- Carrusel envuelto en fondo de imagen y recuadro blanco -->
+  <app-carousel></app-carousel>
+
+  <!-- Aquí debajo irán los otros componentes -->
+  <div class="w-full flex flex-col md:flex-row gap-6 mt-6">
+    <div class="flex-none w-full md:w-[68%] flex">
+      <app-fisio-um class="w-full h-full"></app-fisio-um>
+    </div>
+    <div class="flex-none w-full md:w-[31%] flex">
+      <app-events-um class="w-full h-full"></app-events-um>
+    </div>
+  </div>
+
+  <div>
+
+  </div>
+  
+</div>
+
+<app-footer></app-footer>
+
+

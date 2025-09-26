@@ -1,0 +1,80 @@
+<div class="min-h-screen bg-[#E6D6B8] flex">
+  <!-- Sidebar perfil -->
+  <aside class="w-1/4 bg-white p-6 shadow rounded-lg flex flex-col items-center justify-center">
+      <img
+  [src]="userData?.profileImage || 'assets/default-avatar.jpg'"
+  alt="Foto de perfil"
+  class="w-80 h-80 rounded-full object-cover mb-4"/>
+    <h2 class="text-2xl font-bold text-gray-800">{{ userData?.username || 'Invitado' }}</h2>
+    <p class="text-gray-500 mb-6">Cliente</p>
+    <div class="w-full text-gray-600 text-sm space-y-2">
+      <p><strong>Email:</strong> {{ userData?.username || 'Invitado' }}</p>
+      <p><strong>Dirección:</strong> {{ userData?.address || 'Invitado' }}</p>
+      <p><strong>Teléfono:</strong> {{ userData?.phone || 'Invitado' }} -</p>
+      <p><strong>Nº Cliente:</strong> {{ userData?.id || 'Invitado' }}-</p>
+    </div>
+  </aside>
+  <!-- Contenido principal -->
+  <main class="flex-1 p-8 space-y-6">
+    <!-- Cartera -->
+    <div class="bg-white h-60 rounded-lg shadow p-6 flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <div class="w-10 h-10 bg-green-900 text-white flex items-center justify-center rounded">
+          :tarjeta_de_crédito:
+        </div>
+        <div>
+          <p class="text-gray-500 text-sm">Saldo disponible</p>
+          <p class="text-2xl font-bold text-green-900">200 €</p>
+        </div>
+      </div>
+      <button class="bg-green-800 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-green-700">+</button>
+    </div>
+    <!-- Mis clases -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <h3 class="text-xl font-bold text-center text-green-900 mb-4">Mis clases</h3>
+      <div class="space-y-3">
+        <!-- Clase -->
+        <div class="flex justify-between items-center p-3 rounded-lg bg-[#CCE7E3]">
+          <div>
+            <p class="font-semibold">Yoga Multinivel</p>
+            <p class="text-sm text-gray-600">Marta</p>
+          </div>
+          <button class="bg-green-700 text-white text-sm px-4 py-1 rounded">FECHA</button>
+        </div>
+        <div class="flex justify-between items-center p-3 rounded-lg bg-[#FCE6DC]">
+          <div>
+            <p class="font-semibold">Rocket Yoga</p>
+            <p class="text-sm text-gray-600">Reyes</p>
+          </div>
+          <button class="bg-green-700 text-white text-sm px-4 py-1 rounded">FECHA</button>
+        </div>
+        <div class="flex justify-between items-center p-3 rounded-lg bg-[#F8DADA]">
+          <div>
+            <p class="font-semibold">Tratamiento terapéutico</p>
+          </div>
+          <button class="bg-green-700 text-white text-sm px-4 py-1 rounded">FECHA</button>
+        </div>
+        <div class="flex justify-between items-center p-3 rounded-lg bg-[#E6D4F9]">
+          <div>
+            <p class="font-semibold">Yoga Multinivel</p>
+            <p class="text-sm text-gray-600">Marta</p>
+          </div>
+          <button class="bg-green-700 text-white text-sm px-4 py-1 rounded">FECHA</button>
+        </div>
+        <div class="flex justify-between items-center p-3 rounded-lg bg-[#D5E3F9]">
+          <div>
+            <p class="font-semibold">Pilates</p>
+            <p class="text-sm text-gray-600">Marta</p>
+          </div>
+          <button class="bg-green-700 text-white text-sm px-4 py-1 rounded">FECHA</button>
+        </div>
+        <div class="flex justify-between items-center p-3 rounded-lg bg-[#CFD8D6]">
+          <div>
+            <p class="font-semibold">Fisioterapia</p>
+          </div>
+          <button class="bg-green-700 text-white text-sm px-4 py-1 rounded">FECHA</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

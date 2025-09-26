@@ -1,0 +1,37 @@
+<!-- Versión con imagen (solo visible en pantallas medianas en adelante) -->
+<section
+  class="relative w-full h-screen bg-cover bg-center hidden md:flex items-center"
+  style="background-image: url('landing-assets/images-about/about.webp')"
+>
+  <!-- Contenido principal -->
+  <div
+    class="relative z-10 bg-white rounded-2xl shadow-lg max-w-2xl mx-6 p-8 md:p-10 text-gray-700"
+  >
+    <h2 class="text-3xl font-bold mb-4">{{ title }}</h2>
+
+    <p class="mb-4">{{ primaryText }}</p>
+    <p class="mb-4">{{ secondaryText }}</p>
+    <p class="mb-6">{{ extraText }}</p>
+
+    <button
+      class="bg-[#485C46] hover:bg-[#3b4c3a] text-white font-medium py-2 px-6 rounded-lg transition"
+    >
+      Ver más...
+    </button>
+  </div>
+</section>
+
+<!-- Versión sin imagen (solo visible en móviles) -->
+<section class="block md:hidden w-full bg-white p-6 shadow-lg text-gray-700">
+  <h2 class="text-2xl font-bold mb-4">{{ title }}</h2>
+
+  <p class="mb-4">{{ primaryText }}</p>
+  <p class="mb-4">{{ secondaryText }}</p>
+  <p class="mb-6">{{ extraText }}</p>
+
+  <button
+    class="bg-[#485C46] hover:bg-[#3b4c3a] text-white font-medium py-2 px-6 rounded-lg transition"
+  >
+    Ver más...
+  </button>
+</section>

@@ -1,0 +1,88 @@
+<footer class="bg-[#E8DBC4] text-[#485C46] py-8">
+  <div
+    class="max-w-7xl mx-auto px-6 grid grid-cols-1 xl:grid-cols-3 items-center border-b border-[#3b4c3a]/30 pb-4"
+  >
+    <!-- Logo -->
+    <div class="flex justify-center md:justify-start">
+      <img
+        src="landing-assets/images-hero/logo-sannu.webp"
+        alt="Sannu Logo"
+        class="h-16 md:h-20 lg:h-24 xl:h-28"
+      />
+    </div>
+
+    <!-- Menú -->
+    <ul
+      class="flex flex-col md:flex-row justify-center gap-6 lg:gap-12 text-center"
+    >
+      @for (link of footerLinks; track link.label) {
+      <li>
+        <a
+          [routerLink]="[link.path]"
+          [fragment]="link.fragment"
+          class="hover:text-black whitespace-nowrap"
+        >
+          {{ link.label }}
+        </a>
+      </li>
+      }
+    </ul>
+
+  </div>
+
+  <!-- Redes sociales + Copyright -->
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center mt-4">
+    <!-- Redes sociales -->
+    <div class="flex gap-4">
+      <a
+        href="https://sannuespacios.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="footer-assets/social-media/facebook.webp"
+          alt="Facebook"
+          class="h-4 w-4"
+        />
+      </a>
+      <a
+        href="https://www.instagram.com/sannu.fisioterapia"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="footer-assets/social-media/instagram.webp"
+          alt="Instagram"
+          class="h-4 w-4"
+        />
+      </a>
+      <a
+        href="https://sannuespacios.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="footer-assets/social-media/twitter.webp"
+          alt="Twitter"
+          class="h-4 w-4"
+        />
+      </a>
+      <a
+        href="https://sannuespacios.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="footer-assets/social-media/youtube.webp"
+          alt="YouTube"
+          class="h-4 w-4"
+        />
+      </a>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-sm text-[#3b4c3a]">
+      © Copyright 2025 | All rights Reserved
+    </div>
+  </div>
+</footer>

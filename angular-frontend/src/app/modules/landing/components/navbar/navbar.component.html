@@ -1,0 +1,80 @@
+<nav class="bg-[#485C46] w-full py-5 fixed top-0 left-0 z-50">
+  <div class="max-w-7xl mx-auto px-8 relative">
+
+    <!-- Menú escritorio -->
+    <ul class="hidden md:flex gap-8 justify-between w-full">
+      @for (link of navLinks; track link.label) {
+      <li>
+        <a
+          [routerLink]="[link.path]"
+          [fragment]="link.fragment"
+          [ngClass]="isActive(link) ? activeClasses : linkClasses"
+        >
+          {{ link.label }}
+        </a>
+      </li>
+      }
+    </ul>
+
+    <!-- Botón menú móvil -->
+    <button
+      (click)="toggleMenu()"
+      class="md:hidden absolute right-0 top-1/2 transform -translate-y-1/2 p-2 rounded"
+      [attr.aria-expanded]="menuOpen"
+      title="Abrir menú"
+    >
+      @if(!menuOpen) {
+      <!-- Icono hamburguesa -->
+      <svg
+        class="h-6 w-6 text-white"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4 6h16M4 12h16M4 18h16"
+        />
+      </svg>
+      } @else {
+      <!-- Icono cerrar -->
+      <svg
+        class="h-6 w-6 text-white"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+      }
+    </button>
+  </div>
+
+  <!-- Menú móvil -->
+  @if(menuOpen) {
+  <div id="mobile-menu" class="md:hidden bg-[#485C46] shadow-lg">
+    <ul class="flex flex-col gap-4 p-4">
+      @for (link of navLinks; track link.label) {
+      <li>
+        <a
+          [routerLink]="[link.path]"
+          [fragment]="link.fragment"
+          [routerLinkActive]="activeClasses"
+          [ngClass]="linkClasses"
+          (click)="closeMenu()"
+        >
+          {{ link.label }}
+        </a>
+      </li>
+      }
+    </ul>
+  </div>
+  }
+</nav>
