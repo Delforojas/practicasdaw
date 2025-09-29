@@ -16,8 +16,7 @@ Antes de comenzar, asegúrate de tener instalados en tu sistema:
 ### 1️⃣ Clonar el repositorio
 Ejecuta el siguiente comando para clonar el proyecto:
 ```bash
-git clone git@github.com:campus-CodeArts/Onboarding-SymfAngular.git
-cd Onboarding-SymfAngular
+git clone git@github.com:JoseCapitan/VitaFlow.git
 ```
 
 ### 2️⃣ Levantar los contenedores
@@ -98,3 +97,4 @@ sudo chmod 775 -R angular-frontend
 # Figmas
 [Diseño vistas](https://www.figma.com/design/oEKcIJxAznQNqj6YfWMvfm/Untitled?node-id=0-1&p=f&t=uIEt9yQh2TVBzCuq-0)
 [UserFlow](https://www.figma.com/board/vTgjOoxFoHXoW3s0d9EBiE/User-Flow-Diagram-Template-for-FigJam--Community-?node-id=0-1&p=f&t=VqmAbiWS2ex2tJ2m-0)
+
