@@ -1,7 +1,8 @@
 #  Practicas DAW
 
 ## 📌 Description
-Full-stack web application developed with Symfony and Angular.
+Full-stack web application developed during my internship, using Symfony and Angular. 
+I worked on real features such as user authentication, API integration, and form handling, following a Kanban workflow in a team environment.
 
 ## 🚀 Technologies
 - Angular
