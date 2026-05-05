@@ -1,4 +1,4 @@
-# VitaFlow / Practicas DAW
+#  Practicas DAW
 
 ## 📌 Description
 Full-stack web application developed with Symfony and Angular.
