@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class EventsFormsService {
-  private apiUrl = 'http://localhost:8000/api/contact'; // Url de symfony
+  private apiUrl = 'http://localhost:8001/api/contact'; // Url de symfony
 
   constructor(private http: HttpClient) {}
 
