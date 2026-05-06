@@ -1,6 +1,6 @@
 
 export const environment = {
  production: false,
- endpointUrl: 'http://localhost:8000/api',
- base: 'http://localhost:8000'
+ endpointUrl: 'http://localhost:8001/api',
+ base: 'http://localhost:8001'
  };
