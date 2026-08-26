@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\VoucherRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: VoucherRepository::class)]
@@ -24,6 +26,20 @@ class Voucher
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $valid_until = null;
+
+    /**
+     * @var Collection<int, WalletVoucher>
+     */
+    #[ORM\OneToMany(
+        mappedBy: 'voucher',
+        targetEntity: WalletVoucher::class
+    )]
+    private Collection $walletVouchers;
+
+    public function __construct()
+    {
+        $this->walletVouchers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -78,6 +94,32 @@ class Voucher
         return $this;
     }
 
+    /**
+     * @return Collection<int, WalletVoucher>
+     */
+    public function getWalletVouchers(): Collection
+    {
+        return $this->walletVouchers;
+    }
+
+    public function addWalletVoucher(WalletVoucher $walletVoucher): static
+    {
+        if (!$this->walletVouchers->contains($walletVoucher)) {
+            $this->walletVouchers->add($walletVoucher);
+            $walletVoucher->setVoucher($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWalletVoucher(WalletVoucher $walletVoucher): static
+    {
+        if ($this->walletVouchers->removeElement($walletVoucher)) {
+            if ($walletVoucher->getVoucher() === $this) {
+                $walletVoucher->setVoucher(null);
+            }
+        }
+
+        return $this;
+    }
 }
-
-
