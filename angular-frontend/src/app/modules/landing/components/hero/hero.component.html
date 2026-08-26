@@ -1,30 +1,186 @@
 <div class="pt-5">
+
   <div
     class="relative h-screen w-full bg-cover bg-center flex flex-col justify-between"
-    style="background-image: url('/landing-assets/images-hero/hero.webp')">
-  
-    <!-- Logo -->
-    <div class="flex flex-col items-center md:items-end px-6 md:pr-40 pt-20 md:pt-40 text-center md:text-right">
+    style="background-image: url('/landing-assets/images-hero/hero.webp')"
+  >
+
+    <!-- Logo + información del proyecto -->
+    <div
+      class="flex flex-col items-center md:items-end
+             px-6 md:pr-40 pt-20 md:pt-40
+             text-center md:text-right"
+    >
+
+      <!-- Logo Avengers -->
       <img
-        src="/landing-assets/images-hero/logo-sannu.webp"
-        alt="Logotipo de la empresa. Sannu fisioterapia y yoga"
-        class="w-60 sm:w-72 md:w-[350px] lg:w-[450px] mb-6"/>
-  
+        src="/landing-assets/images-hero/avengers-logo.webp"
+        alt="Logotipo de Avengers"
+        class="w-60 sm:w-72 md:w-[350px] lg:w-[450px] mb-6"
+      />
+
+
+      <!-- Proyecto demostrativo -->
+      <section class="bg-[#0B1524] py-16 px-6">
+
+        <div class="max-w-5xl mx-auto">
+
+          <div
+            class="bg-[#172A46]
+                   border-l-4 border-[#B51F2E]
+                   rounded-xl shadow-xl
+                   p-8 md:p-10"
+          >
+
+            <span
+              class="text-[#B51F2E]
+                     text-sm font-bold
+                     tracking-widest uppercase"
+            >
+              Proyecto demostrativo
+            </span>
+
+
+            <h2
+              class="text-3xl md:text-4xl
+                     font-bold text-white
+                     mt-2 mb-5"
+            >
+              De mis prácticas DAW a un proyecto Full Stack
+            </h2>
+
+
+            <p class="text-[#E3E8ED] leading-relaxed mb-4">
+
+              Esta aplicación web tiene un propósito exclusivamente demostrativo.
+              Ha sido desarrollada para mostrar de forma práctica las habilidades
+              y conocimientos que adquirí durante mis prácticas profesionales del
+              ciclo de Desarrollo de Aplicaciones Web (DAW).
+
+            </p>
+
+
+            <p class="text-[#B8C4D6] leading-relaxed mb-4">
+
+              El proyecto parte de una aplicación desarrollada durante mis
+              prácticas y ha sido adaptado posteriormente a una temática de
+              Los Vengadores, manteniendo y ampliando su arquitectura y
+              funcionalidades con fines de portfolio.
+
+            </p>
+
+
+            <p class="text-[#B8C4D6] leading-relaxed mb-8">
+
+              Incluye desarrollo backend con Symfony y PostgreSQL, creación y
+              consumo de APIs REST, autenticación JWT y control de acceso por
+              roles, desarrollo frontend con Angular y TailwindCSS, gestión de
+              formularios, servicios reutilizables, manejo centralizado de
+              errores y despliegue mediante Docker.
+
+            </p>
+
+
+            <!-- ABRIR DETALLES -->
+            <button
+              type="button"
+              class="btn-avengers"
+              (click)="openTechnicalDetails()"
+            >
+              VER DETALLES TÉCNICOS
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
     </div>
-  
-    <!-- Botones -->
-    <div class="flex flex-col sm:flex-row justify-center gap-6 sm:gap-10 pb-16 sm:pb-20 md:pb-32">
+
+
+    <!-- Botones inferiores -->
+    <div
+      class="flex flex-col sm:flex-row
+             justify-center gap-6 sm:gap-10
+             pb-16 sm:pb-20 md:pb-32"
+    >
+
       <button
-        class="px-6 sm:px-8 md:px-10 py-2 mx-2 sm:py-3 bg-[#485C46]  text-white text-base sm:text-lg rounded-3xl shadow-md hover:bg-green-700 transition"
-        routerLink="/register">
+        class="btn-avengers"
+        routerLink="/register"
+      >
         Regístrate
       </button>
+
+
       <button
-        class="px-6 sm:px-8 md:px-10 py-2 mx-2 sm:py-3 bg-[#485C46]  text-white text-base sm:text-lg rounded-3xl shadow-md hover:bg-green-700 transition"
-        routerLink="">
+        class="btn-avengers"
+        routerLink=""
+      >
         Contacto
       </button>
-    </div>
-  </div>
-</div>
 
+    </div>
+
+  </div>
+
+
+  <!-- =============================== -->
+  <!-- MODAL DETALLES TÉCNICOS -->
+  <!-- =============================== -->
+
+  @if (showTechnicalDetails) {
+
+    <!-- Overlay -->
+    <div
+      class="fixed inset-0 z-[100]
+             bg-black/80
+             flex items-center justify-center
+             p-4"
+      (click)="closeTechnicalDetails()"
+    >
+
+      <!-- Ventana -->
+      <div
+        class="relative
+               w-full max-w-6xl
+               max-h-[90vh]
+               overflow-y-auto
+               bg-[#0B1524]
+               rounded-2xl
+               border border-[#243B6B]
+               border-t-4 border-t-[#B51F2E]
+               shadow-2xl"
+        (click)="$event.stopPropagation()"
+      >
+
+        <!-- Cerrar -->
+        <button
+          type="button"
+          aria-label="Cerrar detalles técnicos"
+          class="absolute top-5 right-5 z-10
+                 w-11 h-11
+                 flex items-center justify-center
+                 rounded-full
+                 bg-[#243B6B]
+                 text-white text-xl
+                 hover:bg-[#B51F2E]
+                 hover:scale-105
+                 transition-all duration-300"
+          (click)="closeTechnicalDetails()"
+        >
+          ✕
+        </button>
+
+
+        <!-- Componente detalles técnicos -->
+        <app-technical-details></app-technical-details>
+
+      </div>
+
+    </div>
+
+  }
+
+</div>

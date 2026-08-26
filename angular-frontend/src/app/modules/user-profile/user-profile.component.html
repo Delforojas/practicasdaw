@@ -1,80 +1,149 @@
-<div class="min-h-screen bg-[#E6D6B8] flex">
+<div class="min-h-screen bg-[#0c343d] flex">
   <!-- Sidebar perfil -->
-  <aside class="w-1/4 bg-white p-6 shadow rounded-lg flex flex-col items-center justify-center">
+  <aside class="w-1/4 bg-[#E3EBF3] p-6 shadow rounded-lg flex flex-col items-center justify-center">
       <img
   [src]="userData?.profileImage || 'assets/default-avatar.jpg'"
   alt="Foto de perfil"
   class="w-80 h-80 rounded-full object-cover mb-4"/>
     <h2 class="text-2xl font-bold text-gray-800">{{ userData?.username || 'Invitado' }}</h2>
-    <p class="text-gray-500 mb-6">Cliente</p>
-    <div class="w-full text-gray-600 text-sm space-y-2">
+    <p class="text-gray-500 mb-6">Agente</p>
+    <div class="w-full text-gray-900 text-sm space-y-2">
       <p><strong>Email:</strong> {{ userData?.username || 'Invitado' }}</p>
-      <p><strong>Dirección:</strong> {{ userData?.address || 'Invitado' }}</p>
-      <p><strong>Teléfono:</strong> {{ userData?.phone || 'Invitado' }} -</p>
-      <p><strong>Nº Cliente:</strong> {{ userData?.id || 'Invitado' }}-</p>
+      <p><strong>Base:</strong> {{ userData?.address || 'Invitado' }}</p>
+      <p><strong>Nivel de Acceso:</strong> {{ userData?.phone || 'Invitado' }} -</p>
+      <p><strong>Nº de Agente</strong> {{ userData?.id || 'Invitado' }}-</p>
     </div>
   </aside>
   <!-- Contenido principal -->
   <main class="flex-1 p-8 space-y-6">
     <!-- Cartera -->
-    <div class="bg-white h-60 rounded-lg shadow p-6 flex justify-between items-center">
-      <div class="flex items-center space-x-4">
-        <div class="w-10 h-10 bg-green-900 text-white flex items-center justify-center rounded">
-          :tarjeta_de_crédito:
-        </div>
-        <div>
-          <p class="text-gray-500 text-sm">Saldo disponible</p>
-          <p class="text-2xl font-bold text-green-900">200 €</p>
-        </div>
-      </div>
-      <button class="bg-green-800 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-green-700">+</button>
-    </div>
+  
     <!-- Mis clases -->
-    <div class="bg-white rounded-lg shadow p-6">
-      <h3 class="text-xl font-bold text-center text-green-900 mb-4">Mis clases</h3>
+    <div class="bg-[#E3EBF3] rounded-lg shadow p-6">
+      <h3 class="text-xl font-bold text-center text-green-900 mb-4">Misiones Asignadas </h3>
       <div class="space-y-3">
-        <!-- Clase -->
-        <div class="flex justify-between items-center p-3 rounded-lg bg-[#CCE7E3]">
-          <div>
-            <p class="font-semibold">Yoga Multinivel</p>
-            <p class="text-sm text-gray-600">Marta</p>
-          </div>
-          <button class="bg-green-700 text-white text-sm px-4 py-1 rounded">FECHA</button>
-        </div>
-        <div class="flex justify-between items-center p-3 rounded-lg bg-[#FCE6DC]">
-          <div>
-            <p class="font-semibold">Rocket Yoga</p>
-            <p class="text-sm text-gray-600">Reyes</p>
-          </div>
-          <button class="bg-green-700 text-white text-sm px-4 py-1 rounded">FECHA</button>
-        </div>
-        <div class="flex justify-between items-center p-3 rounded-lg bg-[#F8DADA]">
-          <div>
-            <p class="font-semibold">Tratamiento terapéutico</p>
-          </div>
-          <button class="bg-green-700 text-white text-sm px-4 py-1 rounded">FECHA</button>
-        </div>
-        <div class="flex justify-between items-center p-3 rounded-lg bg-[#E6D4F9]">
-          <div>
-            <p class="font-semibold">Yoga Multinivel</p>
-            <p class="text-sm text-gray-600">Marta</p>
-          </div>
-          <button class="bg-green-700 text-white text-sm px-4 py-1 rounded">FECHA</button>
-        </div>
-        <div class="flex justify-between items-center p-3 rounded-lg bg-[#D5E3F9]">
-          <div>
-            <p class="font-semibold">Pilates</p>
-            <p class="text-sm text-gray-600">Marta</p>
-          </div>
-          <button class="bg-green-700 text-white text-sm px-4 py-1 rounded">FECHA</button>
-        </div>
-        <div class="flex justify-between items-center p-3 rounded-lg bg-[#CFD8D6]">
-          <div>
-            <p class="font-semibold">Fisioterapia</p>
-          </div>
-          <button class="bg-green-700 text-white text-sm px-4 py-1 rounded">FECHA</button>
-        </div>
-      </div>
+
+  <!-- Iron Man -->
+
+  <div class="flex justify-between items-center p-3 rounded-lg bg-[#8B1E1E] text-white border-l-4 border-[#F5B700]">
+
+    <div>
+
+      <p class="font-semibold">Operación Manhattan</p>
+
+      <p class="text-sm text-[#F5B700]">Iron Man</p>
+
+    </div>
+
+    <button class="bg-[#F5B700] text-[#8B1E1E] font-semibold text-sm px-4 py-1 rounded">
+
+      DETALLES
+
+    </button>
+
+  </div>
+
+  <!-- Thor -->
+
+  <div class="flex justify-between items-center p-3 rounded-lg bg-[#243B6B] text-white border-l-4 border-[#C7CEDB]">
+
+    <div>
+
+      <p class="font-semibold">Defensa de Asgard</p>
+
+      <p class="text-sm text-[#C7CEDB]">Thor</p>
+
+    </div>
+
+    <button class="bg-[#C7CEDB] text-[#243B6B] font-semibold text-sm px-4 py-1 rounded">
+
+      DETALLES
+
+    </button>
+
+  </div>
+
+  <!-- Black Widow -->
+
+  <div class="flex justify-between items-center p-3 rounded-lg bg-[#181818] text-white border-l-4 border-[#C62828]">
+
+    <div>
+
+      <p class="font-semibold">Infiltración en Hydra</p>
+
+      <p class="text-sm text-[#E53935]">Black Widow</p>
+
+    </div>
+
+    <button class="bg-[#C62828] text-white font-semibold text-sm px-4 py-1 rounded">
+
+      DETALLES
+
+    </button>
+
+  </div>
+
+  <!-- Captain America -->
+
+  <div class="flex justify-between items-center p-3 rounded-lg bg-[#1D3557] text-white border-l-4 border-[#C1121F]">
+
+    <div>
+
+      <p class="font-semibold">Rescate en Sokovia</p>
+
+      <p class="text-sm text-[#E5E7EB]">Captain America</p>
+
+    </div>
+
+    <button class="bg-[#C1121F] text-white font-semibold text-sm px-4 py-1 rounded">
+
+      DETALLES
+
+    </button>
+
+  </div>
+
+  <!-- Black Panther -->
+
+  <div class="flex justify-between items-center p-3 rounded-lg bg-[#21162E] text-white border-l-4 border-[#7B2CBF]">
+
+    <div>
+
+      <p class="font-semibold">Operación Wakanda</p>
+
+      <p class="text-sm text-[#C77DFF]">Black Panther</p>
+
+    </div>
+
+    <button class="bg-[#7B2CBF] text-white font-semibold text-sm px-4 py-1 rounded">
+
+      DETALLES
+
+    </button>
+
+  </div>
+
+  <!-- Captain Marvel -->
+
+  <div class="flex justify-between items-center p-3 rounded-lg bg-[#174A7E] text-white border-l-4 border-[#F4C430]">
+
+    <div>
+
+      <p class="font-semibold">Amenaza Cósmica</p>
+
+      <p class="text-sm text-[#F4C430]">Captain Marvel</p>
+
+    </div>
+
+    <button class="bg-[#F4C430] text-[#174A7E] font-semibold text-sm px-4 py-1 rounded">
+
+      DETALLES
+
+    </button>
+
+  </div>
+
+</div>
     </div>
   </main>
 </div>
