@@ -5,10 +5,12 @@ import { Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ConfirmModalComponent } from '../../shared/logout/logout';
 import { AuthService } from '../../shared/service/auth.service';
+import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { PrivateNavbarComponent } from '../../shared/components/private-navbar/private-navbar.component';
 
 @Component({
   selector: 'app-user-profile',
-  imports: [],
+  imports: [PrivateNavbarComponent, FooterComponent],
   templateUrl: './user-profile.component.html'
 })
 
@@ -43,4 +45,3 @@ handleLogoutClick() {
 
 
 }
- 

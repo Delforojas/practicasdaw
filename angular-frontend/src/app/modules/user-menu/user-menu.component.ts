@@ -11,6 +11,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { FisioUmComponent } from "./components/fisio-um/fisio-um.component";
 import { FooterComponent } from "../../shared/components/footer/footer.component";
 import { EventsUmComponent } from "./components/events-um/events-um.component";
+import { PrivateNavbarComponent } from '../../shared/components/private-navbar/private-navbar.component';
 
 
 
@@ -19,7 +20,7 @@ import { EventsUmComponent } from "./components/events-um/events-um.component";
  templateUrl: './user-menu.component.html',
  standalone: true,
 
- imports: [CommonModule, CarouselComponent, FisioUmComponent, FooterComponent, EventsUmComponent]
+ imports: [CommonModule, CarouselComponent, FisioUmComponent, FooterComponent, EventsUmComponent, PrivateNavbarComponent]
 
 })
 

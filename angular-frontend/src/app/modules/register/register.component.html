@@ -1,105 +1,332 @@
-<div class="min-h-screen grid grid-cols-1 md:grid-cols-2">
-  <!-- Columna izquierda con imagen -->
-  <div class="hidden md:block bg-cover bg-center" 
-       style="background-image: url('login-register-assets/login-register.webp');">
-  </div>
+<main
+  class="relative min-h-[100svh] overflow-hidden bg-[#0B1524]
+         lg:grid lg:grid-cols-[9fr_11fr] lg:overflow-visible"
+>
+  <!-- Atmósfera visual para móvil y tablet -->
+  <div
+    class="absolute inset-0 bg-cover bg-center opacity-20 lg:hidden"
+    style="background-image: url('/avengers-bg.jpg')"
+  ></div>
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-[#0B1524]/75 via-[#0B1524]/90 to-[#0B1524] lg:hidden"
+  ></div>
 
-  <!-- Columna derecha con formulario -->
-  <div class="bg-[#e8dbc4] flex items-center justify-center p-8">
-    
-    <div class="w-full max-w-md">
-      <!-- Título -->
-      <h2 class="text-3xl font-bold text-green-800 mb-8 text-center">Registro</h2>
+  <!-- Sistema visual de reclutamiento S.H.I.E.L.D. -->
+  <section
+    class="relative hidden h-[100svh] overflow-hidden bg-cover bg-center lg:sticky lg:top-0 lg:block"
+    style="background-image: url('/avengers-bg.jpg')"
+    aria-label="Sistema de registro de agentes S.H.I.E.L.D."
+  >
+    <div class="absolute inset-0 bg-[#0B1524]/25"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0B1524]/15 via-[#0B1524]/25 to-[#0B1524]"></div>
+    <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0B1524]/95 to-transparent"></div>
 
-      <!-- Formulario -->
+    <div class="absolute bottom-12 left-10 right-10 xl:bottom-16 xl:left-14">
+      <img
+        src="/landing-assets/images-hero/avengers-logo.webp"
+        alt="Logotipo de Avengers"
+        class="mb-5 w-48 object-contain drop-shadow-2xl xl:w-56"
+      />
 
-      <form class="space-y-4" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <input type="text" formControlName="username" placeholder="Usuario" class="w-full p-3 rounded bg-gray-200 focus:outline-none" />
-                     <div *ngIf="username?.invalid && username?.touched" class="text-red-500 text-xs mt-1">
-                     <span *ngIf="username?.errors?.['required']">El usuario es obligatorio.</span>
-                     </div>
-       
-              <!-- Nombre -->
-              <input type="text" name="full_name" formControlName="full_name" placeholder="Nombre" required
-               class="w-full p-3 rounded bg-gray-200 focus:outline-none" />
-                     <div *ngIf="full_name?.invalid && full_name?.touched" class="text-red-500 text-xs mt-1">
-                            <span *ngIf="full_name?.errors?.['required']">El nombre es obligatorio.</span>
-                     </div>
-
-              <!-- Apellidos -->
-              <input type="text" placeholder="Apellidos" formControlName="surname"
-                     class="w-full p-3 rounded bg-gray-200 focus:outline-none" />
-              
-              <!-- Email -->
-              <input type="email" id="email" name="email" formControlName="email" placeholder="Email" required
-                     class="w-full p-3 rounded bg-gray-200 focus:outline-none" />
-              <div *ngIf="email?.invalid && email?.touched" class="text-red-500 text-xs mt-1">
-                     <span *ngIf="email?.errors?.['required']">El email es obligatorio.</span>
-                     <span *ngIf="email?.errors?.['email']">Por favor, introduce un email válido.</span>
-              </div>
-              <!-- Dirección -->
-              <input type="text" placeholder="Dirección" formControlName="address" placeholder="Dirección"
-                     class="w-full p-3 rounded bg-gray-200 focus:outline-none" />
-
-              <!-- Código Postal + Población (grid de 2 col) -->
-              <div class="grid grid-cols-2 gap-4">
-                     <input type="text" placeholder="Código Postal" formControlName="postal_code"
-                            class="p-3 rounded bg-gray-200 focus:outline-none" />
-                     <input type="text" placeholder="Población" formControlName="city"
-                            class="p-3 rounded bg-gray-200 focus:outline-none" />
-              </div>
-
-              <!-- Teléfono -->
-              <input type="tel" id="phone" name="phone" formControlName="phone" placeholder="Teléfono" required
-                     class="w-full p-3 rounded bg-gray-200 focus:outline-none" />
-                     <div *ngIf="phone?.invalid && phone?.touched" class="text-red-500 text-xs mt-1">
-                            <span *ngIf="phone?.errors?.['pattern']">Por favor, introduce un número de teléfono válido.</span>
-                     </div>
-
-              <!-- Contraseña -->
-              <input type="password" id="password" name="password" formControlName="password" placeholder="Contraseña" required
-                     class="w-full p-3 rounded bg-green-50 border border-green-800 focus:outline-none" />
-                     <div *ngIf="password?.invalid && password?.touched" class="text-red-500 text-xs mt-1">
-                             <span *ngIf="password?.errors?.['required']">La contraseña es requerida.</span>
-                            <span *ngIf="password?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</span>
-                            <span *ngIf="password?.errors?.['pattern']">Debe incluir al menos una mayúscula y un carácter especial.</span>
-                     </div>
-              
-
-              <!-- Confirmar contraseña -->
-              <input type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword" placeholder="Repite contraseña" required
-                     class="w-full p-3 rounded bg-green-50 border border-green-800 focus:outline-none" />
-                     <div *ngIf="confirmPassword?.invalid && confirmPassword?.touched" class="text-red-500 text-xs mt-1">
-                            <span *ngIf="confirmPassword?.errors?.['required']">La confirmación de contraseña es
-                                   requerida.</span>
-                            </div>
-                     <div *ngIf="registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched"
-                     class="text-red-500 text-xs mt-1">
-                     Las contraseñas no coinciden.
-                     </div>
-               <div>
-                     <input type="file" accept="image/*" (change)="onFileSelected($event)" />
-                     <p *ngIf="selectedFile" class="text-xs text-gray-600 mt-1">
-                     Archivo seleccionado: {{ selectedFile.name }}
-                     </p>
-              </div>
-
-                     <!-- Botón -->
-                     <button type="submit" [disabled]="isLoading "
-                            class="w-full bg-green-800 text-white font-semibold py-3 rounded shadow-md hover:bg-green-700 transition">
-                     Crear una Cuenta
-                     </button>
-                           
-                        
-
-                            
-      </form>
-
-      <!-- Enlace a login -->
-      <p class="mt-6 text-center text-sm text-gray-700">
-        ¿Ya tienes cuenta? 
-        <a href="/login" class="text-green-800 font-semibold hover:underline">Inicia Sesión</a>
+      <div class="flex items-center gap-3">
+        <span class="h-px w-10 bg-[#B51F2E]"></span>
+        <span class="text-xs font-semibold tracking-[0.32em] text-[#B8C4D6]">
+          S.H.I.E.L.D.
+        </span>
+      </div>
+      <p class="mt-2 text-sm font-semibold tracking-[0.22em] text-[#E3E8ED] xl:text-base">
+        AGENT RECRUITMENT SYSTEM
+      </p>
+      <p class="mt-3 max-w-sm text-sm leading-6 text-[#B8C4D6]">
+        Registro de nuevas identidades para el acceso al sistema.
       </p>
     </div>
-  </div>
-</div>
+  </section>
+
+  <!-- Formulario de registro -->
+  <section class="relative flex justify-center px-4 py-8 sm:px-6 sm:py-10 lg:px-10 lg:py-12 xl:px-14">
+    <div
+      class="my-auto w-full min-w-0 max-w-2xl rounded-2xl border border-[#243B6B]
+             border-t-2 border-t-[#B51F2E] bg-[#172A46]/65 p-5
+             shadow-2xl shadow-black/30 backdrop-blur-md sm:p-7"
+    >
+      <!-- Identificación -->
+      <div class="mb-6">
+        <div class="flex items-center gap-3">
+          <span class="h-px w-8 bg-[#B51F2E]"></span>
+          <span class="text-xs font-bold tracking-[0.24em] text-[#B51F2E]">
+            S.H.I.E.L.D.
+          </span>
+        </div>
+        <h1 class="mt-3 text-2xl font-bold tracking-wide text-[#E3E8ED] sm:text-3xl">
+          REGISTRO DE AGENTE
+        </h1>
+        <p class="mt-2 text-sm leading-6 text-[#B8C4D6]">
+          Completa tus datos para solicitar acceso al sistema.
+        </p>
+      </div>
+
+      <form class="space-y-4" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <!-- Usuario -->
+        <div>
+          <label for="register-username" class="mb-2 block text-sm font-medium text-[#E3E8ED]">
+            Usuario
+          </label>
+          <input
+            id="register-username"
+            type="text"
+            formControlName="username"
+            placeholder="Nombre de usuario"
+            class="w-full min-w-0 rounded-lg border border-[#243B6B] bg-[#0B1524]/85
+                   px-4 py-2.5 text-sm text-[#E3E8ED] outline-none
+                   placeholder:text-[#B8C4D6]/55 focus:border-[#B51F2E]
+                   focus:ring-2 focus:ring-[#B51F2E]/30 transition-colors duration-200"
+          />
+          <div *ngIf="username?.invalid && username?.touched" class="mt-2 text-xs leading-5 text-red-400">
+            <span *ngIf="username?.errors?.['required']">El usuario es obligatorio.</span>
+          </div>
+        </div>
+
+        <!-- Nombre y apellidos -->
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div class="min-w-0">
+            <label for="register-full-name" class="mb-2 block text-sm font-medium text-[#E3E8ED]">
+              Nombre
+            </label>
+            <input
+              id="register-full-name"
+              type="text"
+              name="full_name"
+              formControlName="full_name"
+              placeholder="Nombre"
+              required
+              class="w-full min-w-0 rounded-lg border border-[#243B6B] bg-[#0B1524]/85
+                     px-4 py-2.5 text-sm text-[#E3E8ED] outline-none
+                     placeholder:text-[#B8C4D6]/55 focus:border-[#B51F2E]
+                     focus:ring-2 focus:ring-[#B51F2E]/30 transition-colors duration-200"
+            />
+            <div *ngIf="full_name?.invalid && full_name?.touched" class="mt-2 text-xs leading-5 text-red-400">
+              <span *ngIf="full_name?.errors?.['required']">El nombre es obligatorio.</span>
+            </div>
+          </div>
+
+          <div class="min-w-0">
+            <label for="register-surname" class="mb-2 block text-sm font-medium text-[#E3E8ED]">
+              Apellidos
+            </label>
+            <input
+              id="register-surname"
+              type="text"
+              placeholder="Apellidos"
+              formControlName="surname"
+              class="w-full min-w-0 rounded-lg border border-[#243B6B] bg-[#0B1524]/85
+                     px-4 py-2.5 text-sm text-[#E3E8ED] outline-none
+                     placeholder:text-[#B8C4D6]/55 focus:border-[#B51F2E]
+                     focus:ring-2 focus:ring-[#B51F2E]/30 transition-colors duration-200"
+            />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label for="email" class="mb-2 block text-sm font-medium text-[#E3E8ED]">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            formControlName="email"
+            placeholder="agente@shield.com"
+            required
+            class="w-full min-w-0 rounded-lg border border-[#243B6B] bg-[#0B1524]/85
+                   px-4 py-2.5 text-sm text-[#E3E8ED] outline-none
+                   placeholder:text-[#B8C4D6]/55 focus:border-[#B51F2E]
+                   focus:ring-2 focus:ring-[#B51F2E]/30 transition-colors duration-200"
+          />
+          <div *ngIf="email?.invalid && email?.touched" class="mt-2 text-xs leading-5 text-red-400">
+            <span *ngIf="email?.errors?.['required']">El email es obligatorio.</span>
+            <span *ngIf="email?.errors?.['email']">Por favor, introduce un email válido.</span>
+          </div>
+        </div>
+
+        <!-- Dirección -->
+        <div>
+          <label for="register-address" class="mb-2 block text-sm font-medium text-[#E3E8ED]">
+            Dirección
+          </label>
+          <input
+            id="register-address"
+            type="text"
+            placeholder="Dirección"
+            formControlName="address"
+            class="w-full min-w-0 rounded-lg border border-[#243B6B] bg-[#0B1524]/85
+                   px-4 py-2.5 text-sm text-[#E3E8ED] outline-none
+                   placeholder:text-[#B8C4D6]/55 focus:border-[#B51F2E]
+                   focus:ring-2 focus:ring-[#B51F2E]/30 transition-colors duration-200"
+          />
+        </div>
+
+        <!-- Código postal y población -->
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div class="min-w-0">
+            <label for="register-postal-code" class="mb-2 block text-sm font-medium text-[#E3E8ED]">
+              Código postal
+            </label>
+            <input
+              id="register-postal-code"
+              type="text"
+              placeholder="Código Postal"
+              formControlName="postal_code"
+              class="w-full min-w-0 rounded-lg border border-[#243B6B] bg-[#0B1524]/85
+                     px-4 py-2.5 text-sm text-[#E3E8ED] outline-none
+                     placeholder:text-[#B8C4D6]/55 focus:border-[#B51F2E]
+                     focus:ring-2 focus:ring-[#B51F2E]/30 transition-colors duration-200"
+            />
+          </div>
+
+          <div class="min-w-0">
+            <label for="register-city" class="mb-2 block text-sm font-medium text-[#E3E8ED]">
+              Población
+            </label>
+            <input
+              id="register-city"
+              type="text"
+              placeholder="Población"
+              formControlName="city"
+              class="w-full min-w-0 rounded-lg border border-[#243B6B] bg-[#0B1524]/85
+                     px-4 py-2.5 text-sm text-[#E3E8ED] outline-none
+                     placeholder:text-[#B8C4D6]/55 focus:border-[#B51F2E]
+                     focus:ring-2 focus:ring-[#B51F2E]/30 transition-colors duration-200"
+            />
+          </div>
+        </div>
+
+        <!-- Teléfono -->
+        <div>
+          <label for="phone" class="mb-2 block text-sm font-medium text-[#E3E8ED]">
+            Teléfono
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            formControlName="phone"
+            placeholder="Teléfono"
+            required
+            class="w-full min-w-0 rounded-lg border border-[#243B6B] bg-[#0B1524]/85
+                   px-4 py-2.5 text-sm text-[#E3E8ED] outline-none
+                   placeholder:text-[#B8C4D6]/55 focus:border-[#B51F2E]
+                   focus:ring-2 focus:ring-[#B51F2E]/30 transition-colors duration-200"
+          />
+          <div *ngIf="phone?.invalid && phone?.touched" class="mt-2 text-xs leading-5 text-red-400">
+            <span *ngIf="phone?.errors?.['pattern']">Por favor, introduce un número de teléfono válido.</span>
+          </div>
+        </div>
+
+        <!-- Contraseña -->
+        <div>
+          <label for="password" class="mb-2 block text-sm font-medium text-[#E3E8ED]">
+            Contraseña
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            formControlName="password"
+            placeholder="Contraseña"
+            required
+            class="w-full min-w-0 rounded-lg border border-[#243B6B] bg-[#0B1524]/85
+                   px-4 py-2.5 text-sm text-[#E3E8ED] outline-none
+                   placeholder:text-[#B8C4D6]/55 focus:border-[#B51F2E]
+                   focus:ring-2 focus:ring-[#B51F2E]/30 transition-colors duration-200"
+          />
+          <div *ngIf="password?.invalid && password?.touched" class="mt-2 text-xs leading-5 text-red-400">
+            <span *ngIf="password?.errors?.['required']">La contraseña es requerida.</span>
+            <span *ngIf="password?.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</span>
+            <span *ngIf="password?.errors?.['pattern']">Debe incluir al menos una mayúscula y un carácter especial.</span>
+          </div>
+        </div>
+
+        <!-- Confirmar contraseña -->
+        <div>
+          <label for="confirmPassword" class="mb-2 block text-sm font-medium text-[#E3E8ED]">
+            Repetir contraseña
+          </label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            formControlName="confirmPassword"
+            placeholder="Repite contraseña"
+            required
+            class="w-full min-w-0 rounded-lg border border-[#243B6B] bg-[#0B1524]/85
+                   px-4 py-2.5 text-sm text-[#E3E8ED] outline-none
+                   placeholder:text-[#B8C4D6]/55 focus:border-[#B51F2E]
+                   focus:ring-2 focus:ring-[#B51F2E]/30 transition-colors duration-200"
+          />
+          <div *ngIf="confirmPassword?.invalid && confirmPassword?.touched" class="mt-2 text-xs leading-5 text-red-400">
+            <span *ngIf="confirmPassword?.errors?.['required']">La confirmación de contraseña es
+              requerida.</span>
+          </div>
+          <div
+            *ngIf="registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched"
+            class="mt-2 text-xs leading-5 text-red-400"
+          >
+            Las contraseñas no coinciden.
+          </div>
+        </div>
+
+        <!-- Foto de perfil -->
+        <div class="rounded-xl border border-[#243B6B] bg-[#0B1524]/45 p-4">
+          <span class="block text-sm font-medium text-[#E3E8ED]">Foto de perfil</span>
+          <p class="mt-1 text-xs leading-5 text-[#B8C4D6]">
+            Formatos recomendados: JPG, PNG o WebP.
+          </p>
+
+          <input
+            id="profile-image"
+            type="file"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+            class="sr-only"
+          />
+          <label
+            for="profile-image"
+            class="mt-3 inline-flex cursor-pointer items-center justify-center rounded-lg
+                   border border-[#243B6B] bg-[#172A46] px-4 py-2.5 text-sm font-semibold
+                   text-[#E3E8ED] transition-colors duration-200
+                   hover:border-[#B51F2E] hover:bg-[#243B6B]"
+          >
+            Seleccionar imagen
+          </label>
+
+          <p *ngIf="selectedFile" class="mt-2 break-all text-xs text-[#B8C4D6]">
+            Archivo seleccionado: {{ selectedFile.name }}
+          </p>
+        </div>
+
+        <!-- Acción principal -->
+        <button
+          type="submit"
+          [disabled]="isLoading "
+          class="btn-avengers w-full !py-3 text-sm tracking-[0.12em]
+                 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          CREAR CUENTA
+        </button>
+      </form>
+
+      <!-- Acceso existente -->
+      <p class="mt-5 text-center text-sm text-[#B8C4D6]">
+        ¿Ya tienes cuenta?
+        <a
+          href="/login"
+          class="ml-1 font-semibold text-[#E3E8ED] transition-colors duration-200 hover:text-[#B51F2E] hover:underline"
+        >
+          Inicia Sesión
+        </a>
+      </p>
+    </div>
+  </section>
+</main>

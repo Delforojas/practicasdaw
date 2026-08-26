@@ -1,149 +1,229 @@
-<div class="min-h-screen bg-[#0c343d] flex">
-  <!-- Sidebar perfil -->
-  <aside class="w-1/4 bg-[#E3EBF3] p-6 shadow rounded-lg flex flex-col items-center justify-center">
-      <img
-  [src]="userData?.profileImage || 'assets/default-avatar.jpg'"
-  alt="Foto de perfil"
-  class="w-80 h-80 rounded-full object-cover mb-4"/>
-    <h2 class="text-2xl font-bold text-gray-800">{{ userData?.username || 'Invitado' }}</h2>
-    <p class="text-gray-500 mb-6">Agente</p>
-    <div class="w-full text-gray-900 text-sm space-y-2">
-      <p><strong>Email:</strong> {{ userData?.username || 'Invitado' }}</p>
-      <p><strong>Base:</strong> {{ userData?.address || 'Invitado' }}</p>
-      <p><strong>Nivel de Acceso:</strong> {{ userData?.phone || 'Invitado' }} -</p>
-      <p><strong>Nº de Agente</strong> {{ userData?.id || 'Invitado' }}-</p>
+<div class="flex min-h-screen flex-col bg-[#0B1524]">
+<app-private-navbar></app-private-navbar>
+
+<main class="relative flex-1 overflow-x-hidden bg-[#0B1524]">
+  <!-- Atmósfera general -->
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-cover bg-center opacity-15"
+    style="background-image: url('/avengers-bg.jpg')"
+  ></div>
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 h-[30rem]
+           bg-gradient-to-b from-[#0B1524]/60 via-[#0B1524]/90 to-[#0B1524]"
+  ></div>
+
+  <div class="relative mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
+    <!-- Cabecera del expediente -->
+    <header class="mb-8 sm:mb-10">
+      <div class="flex items-center gap-3">
+        <span class="h-px w-8 bg-[#B51F2E]"></span>
+        <span class="text-xs font-bold tracking-[0.24em] text-[#B51F2E]">
+          S.H.I.E.L.D.
+        </span>
+      </div>
+      <h1 class="mt-3 text-2xl font-bold tracking-wide text-[#E3E8ED] sm:text-3xl lg:text-4xl">
+        AGENT DOSSIER
+      </h1>
+      <p class="mt-2 text-xs font-semibold tracking-[0.2em] text-[#B8C4D6] sm:text-sm">
+        SECURE PERSONNEL RECORD
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,4fr)_minmax(0,7fr)] lg:gap-8">
+      <!-- Identificación del agente -->
+      <aside
+        class="min-w-0 rounded-2xl border border-[#243B6B] border-t-2 border-t-[#B51F2E]
+               bg-[#172A46]/75 p-5 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-7"
+        aria-labelledby="agent-identification-title"
+      >
+        <div class="flex items-center gap-3">
+          <span class="h-px w-8 bg-[#B51F2E]"></span>
+          <span class="text-xs font-bold tracking-[0.2em] text-[#B51F2E]">
+            S.H.I.E.L.D.
+          </span>
+        </div>
+        <h2
+          id="agent-identification-title"
+          class="mt-3 text-lg font-bold tracking-wide text-[#E3E8ED] sm:text-xl"
+        >
+          AGENT IDENTIFICATION
+        </h2>
+
+        <div class="mt-7 flex flex-col items-center text-center">
+          <div class="relative">
+            <div class="absolute -inset-1 rounded-full bg-[#B51F2E]/65 blur-sm"></div>
+            <img
+              [src]="userData?.profileImage || 'assets/default-avatar.jpg'"
+              alt="Foto de perfil"
+              class="relative h-28 w-28 rounded-full border-2 border-[#E3E8ED]/80
+                     object-cover shadow-xl sm:h-32 sm:w-32"
+            />
+            <span
+              class="absolute bottom-1 right-1 h-4 w-4 rounded-full border-2 border-[#172A46]
+                     bg-[#B51F2E] shadow-[0_0_10px_rgba(181,31,46,0.9)]"
+              aria-hidden="true"
+            ></span>
+          </div>
+
+          <h3 class="mt-5 break-words text-2xl font-bold text-[#E3E8ED]">
+            {{ userData?.username || 'Invitado' }}
+          </h3>
+          <span
+            class="mt-3 inline-flex items-center gap-2 rounded-full border border-[#243B6B]
+                   bg-[#0B1524]/55 px-3 py-1 text-xs font-semibold tracking-[0.14em] text-[#B8C4D6]"
+          >
+            <span class="h-1.5 w-1.5 rounded-full bg-[#B51F2E]"></span>
+            ACTIVE AGENT
+          </span>
+        </div>
+
+        <dl class="mt-7 divide-y divide-[#243B6B] rounded-xl border border-[#243B6B] bg-[#0B1524]/45 px-4">
+          <div class="py-4">
+            <dt class="text-xs font-semibold tracking-[0.16em] text-[#B8C4D6]">EMAIL</dt>
+            <dd class="mt-1 break-words text-sm font-medium text-[#E3E8ED]">
+              {{ userData?.username || 'Invitado' }}
+            </dd>
+          </div>
+          <div class="py-4">
+            <dt class="text-xs font-semibold tracking-[0.16em] text-[#B8C4D6]">BASE</dt>
+            <dd class="mt-1 break-words text-sm font-medium text-[#E3E8ED]">
+              {{ userData?.address || 'Invitado' }}
+            </dd>
+          </div>
+          <div class="py-4">
+            <dt class="text-xs font-semibold tracking-[0.16em] text-[#B8C4D6]">ACCESS LEVEL</dt>
+            <dd class="mt-1 break-words text-sm font-medium text-[#E3E8ED]">
+              {{ userData?.phone || 'Invitado' }}
+            </dd>
+          </div>
+          <div class="py-4">
+            <dt class="text-xs font-semibold tracking-[0.16em] text-[#B8C4D6]">AGENT ID</dt>
+            <dd class="mt-1 break-words text-sm font-medium text-[#E3E8ED]">
+              {{ userData?.id || 'Invitado' }}
+            </dd>
+          </div>
+        </dl>
+      </aside>
+
+      <!-- Misiones asignadas -->
+      <section
+        class="min-w-0 rounded-2xl border border-[#243B6B] border-t-2 border-t-[#B51F2E]
+               bg-[#172A46]/75 p-5 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-7"
+        aria-labelledby="assigned-missions-title"
+      >
+        <div class="mb-6">
+          <div class="flex items-center gap-3">
+            <span class="h-px w-8 bg-[#B51F2E]"></span>
+            <span class="text-xs font-bold tracking-[0.2em] text-[#B51F2E]">
+              S.H.I.E.L.D.
+            </span>
+          </div>
+          <h2
+            id="assigned-missions-title"
+            class="mt-3 text-xl font-bold tracking-wide text-[#E3E8ED] sm:text-2xl"
+          >
+            ASSIGNED MISSIONS
+          </h2>
+          <p class="mt-2 text-sm leading-6 text-[#B8C4D6]">
+            Operaciones registradas en el expediente del agente.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <!-- Iron Man -->
+          <article
+            class="flex min-w-0 flex-col gap-4 rounded-xl border border-[#243B6B]
+                   border-l-4 border-l-[#F5B700] bg-[#0B1524]/60 p-4
+                   sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div class="min-w-0">
+              <h3 class="break-words font-semibold text-[#E3E8ED]">Operación Manhattan</h3>
+              <p class="mt-1 text-sm text-[#B8C4D6]">Iron Man</p>
+            </div>
+            <button class="btn-shield w-full shrink-0 !px-4 !py-2 text-xs tracking-[0.08em] sm:w-auto">
+              DETALLES
+            </button>
+          </article>
+
+          <!-- Thor -->
+          <article
+            class="flex min-w-0 flex-col gap-4 rounded-xl border border-[#243B6B]
+                   border-l-4 border-l-[#C7CEDB] bg-[#0B1524]/60 p-4
+                   sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div class="min-w-0">
+              <h3 class="break-words font-semibold text-[#E3E8ED]">Defensa de Asgard</h3>
+              <p class="mt-1 text-sm text-[#B8C4D6]">Thor</p>
+            </div>
+            <button class="btn-shield w-full shrink-0 !px-4 !py-2 text-xs tracking-[0.08em] sm:w-auto">
+              DETALLES
+            </button>
+          </article>
+
+          <!-- Black Widow -->
+          <article
+            class="flex min-w-0 flex-col gap-4 rounded-xl border border-[#243B6B]
+                   border-l-4 border-l-[#C62828] bg-[#0B1524]/60 p-4
+                   sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div class="min-w-0">
+              <h3 class="break-words font-semibold text-[#E3E8ED]">Infiltración en Hydra</h3>
+              <p class="mt-1 text-sm text-[#B8C4D6]">Black Widow</p>
+            </div>
+            <button class="btn-shield w-full shrink-0 !px-4 !py-2 text-xs tracking-[0.08em] sm:w-auto">
+              DETALLES
+            </button>
+          </article>
+
+          <!-- Captain America -->
+          <article
+            class="flex min-w-0 flex-col gap-4 rounded-xl border border-[#243B6B]
+                   border-l-4 border-l-[#C1121F] bg-[#0B1524]/60 p-4
+                   sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div class="min-w-0">
+              <h3 class="break-words font-semibold text-[#E3E8ED]">Rescate en Sokovia</h3>
+              <p class="mt-1 text-sm text-[#B8C4D6]">Captain America</p>
+            </div>
+            <button class="btn-shield w-full shrink-0 !px-4 !py-2 text-xs tracking-[0.08em] sm:w-auto">
+              DETALLES
+            </button>
+          </article>
+
+          <!-- Black Panther -->
+          <article
+            class="flex min-w-0 flex-col gap-4 rounded-xl border border-[#243B6B]
+                   border-l-4 border-l-[#7B2CBF] bg-[#0B1524]/60 p-4
+                   sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div class="min-w-0">
+              <h3 class="break-words font-semibold text-[#E3E8ED]">Operación Wakanda</h3>
+              <p class="mt-1 text-sm text-[#B8C4D6]">Black Panther</p>
+            </div>
+            <button class="btn-shield w-full shrink-0 !px-4 !py-2 text-xs tracking-[0.08em] sm:w-auto">
+              DETALLES
+            </button>
+          </article>
+
+          <!-- Captain Marvel -->
+          <article
+            class="flex min-w-0 flex-col gap-4 rounded-xl border border-[#243B6B]
+                   border-l-4 border-l-[#F4C430] bg-[#0B1524]/60 p-4
+                   sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div class="min-w-0">
+              <h3 class="break-words font-semibold text-[#E3E8ED]">Amenaza Cósmica</h3>
+              <p class="mt-1 text-sm text-[#B8C4D6]">Captain Marvel</p>
+            </div>
+            <button class="btn-shield w-full shrink-0 !px-4 !py-2 text-xs tracking-[0.08em] sm:w-auto">
+              DETALLES
+            </button>
+          </article>
+        </div>
+      </section>
     </div>
-  </aside>
-  <!-- Contenido principal -->
-  <main class="flex-1 p-8 space-y-6">
-    <!-- Cartera -->
-  
-    <!-- Mis clases -->
-    <div class="bg-[#E3EBF3] rounded-lg shadow p-6">
-      <h3 class="text-xl font-bold text-center text-green-900 mb-4">Misiones Asignadas </h3>
-      <div class="space-y-3">
-
-  <!-- Iron Man -->
-
-  <div class="flex justify-between items-center p-3 rounded-lg bg-[#8B1E1E] text-white border-l-4 border-[#F5B700]">
-
-    <div>
-
-      <p class="font-semibold">Operación Manhattan</p>
-
-      <p class="text-sm text-[#F5B700]">Iron Man</p>
-
-    </div>
-
-    <button class="bg-[#F5B700] text-[#8B1E1E] font-semibold text-sm px-4 py-1 rounded">
-
-      DETALLES
-
-    </button>
-
   </div>
+</main>
 
-  <!-- Thor -->
-
-  <div class="flex justify-between items-center p-3 rounded-lg bg-[#243B6B] text-white border-l-4 border-[#C7CEDB]">
-
-    <div>
-
-      <p class="font-semibold">Defensa de Asgard</p>
-
-      <p class="text-sm text-[#C7CEDB]">Thor</p>
-
-    </div>
-
-    <button class="bg-[#C7CEDB] text-[#243B6B] font-semibold text-sm px-4 py-1 rounded">
-
-      DETALLES
-
-    </button>
-
-  </div>
-
-  <!-- Black Widow -->
-
-  <div class="flex justify-between items-center p-3 rounded-lg bg-[#181818] text-white border-l-4 border-[#C62828]">
-
-    <div>
-
-      <p class="font-semibold">Infiltración en Hydra</p>
-
-      <p class="text-sm text-[#E53935]">Black Widow</p>
-
-    </div>
-
-    <button class="bg-[#C62828] text-white font-semibold text-sm px-4 py-1 rounded">
-
-      DETALLES
-
-    </button>
-
-  </div>
-
-  <!-- Captain America -->
-
-  <div class="flex justify-between items-center p-3 rounded-lg bg-[#1D3557] text-white border-l-4 border-[#C1121F]">
-
-    <div>
-
-      <p class="font-semibold">Rescate en Sokovia</p>
-
-      <p class="text-sm text-[#E5E7EB]">Captain America</p>
-
-    </div>
-
-    <button class="bg-[#C1121F] text-white font-semibold text-sm px-4 py-1 rounded">
-
-      DETALLES
-
-    </button>
-
-  </div>
-
-  <!-- Black Panther -->
-
-  <div class="flex justify-between items-center p-3 rounded-lg bg-[#21162E] text-white border-l-4 border-[#7B2CBF]">
-
-    <div>
-
-      <p class="font-semibold">Operación Wakanda</p>
-
-      <p class="text-sm text-[#C77DFF]">Black Panther</p>
-
-    </div>
-
-    <button class="bg-[#7B2CBF] text-white font-semibold text-sm px-4 py-1 rounded">
-
-      DETALLES
-
-    </button>
-
-  </div>
-
-  <!-- Captain Marvel -->
-
-  <div class="flex justify-between items-center p-3 rounded-lg bg-[#174A7E] text-white border-l-4 border-[#F4C430]">
-
-    <div>
-
-      <p class="font-semibold">Amenaza Cósmica</p>
-
-      <p class="text-sm text-[#F4C430]">Captain Marvel</p>
-
-    </div>
-
-    <button class="bg-[#F4C430] text-[#174A7E] font-semibold text-sm px-4 py-1 rounded">
-
-      DETALLES
-
-    </button>
-
-  </div>
-
-</div>
-    </div>
-  </main>
+<app-footer></app-footer>
 </div>
