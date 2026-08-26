@@ -1,6 +1,9 @@
-
 export const environment = {
- production: false,
- endpointUrl: 'http://localhost:8001/api',
- base: 'http://localhost:8001'
- };
+
+  production: true,
+
+  endpointUrl: 'https://avengers-training.alwaysdata.net/api',
+
+  base: 'https://avengers-training.alwaysdata.net'
+
+};

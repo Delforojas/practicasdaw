@@ -1,22 +1,27 @@
 <?php
 
-
 namespace App\EventListener;
-
 
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
-
 class JWTFromCookieListener
+
 {
-   public function onKernelRequest(RequestEvent $event): void
-   {
-       $request = $event->getRequest();
-       $token = $request->cookies->get('authToken');
 
+    public function onKernelRequest(RequestEvent $event): void
 
-       if ($token && !$request->headers->has('Authorization')) {
-           $request->headers->set('Authorization', 'Bearer ' . $token);
-       }
-   }
+    {
+
+        $request = $event->getRequest();
+
+        $token = $request->cookies->get('authtoken');
+
+        if ($token && !$request->headers->has('Authorization')) {
+
+            $request->headers->set('Authorization', 'Bearer ' . $token);
+
+        }
+
+    }
+
 }
