@@ -1,37 +1,99 @@
-<div class="min-h-screen bg-[#0c343d] flex flex-col px-10 py-8">
-  <img
-  [src]="userData?.profileImage || 'assets/default-avatar.jpg'"
-  alt="Foto de perfil"
-  class="w-24 h-24 rounded-full object-cover"
-/>
-  <!-- El nombre será dinámico según el login -->
-  <h1 class="text-xl text-center text-[#ed7707] mb-4">
-    Te damos la bienvenida  <br />
-    {{ userData?.username || 'Invitado' }}
-  </h1>
-  <div class="text-right">
-          <a href="/user-profile" class="text-sm text-[#ed7707] hover:underline">Perfil de Usuario</a>
+<div class="flex min-h-screen flex-col bg-[#0B1524]">
+<app-private-navbar></app-private-navbar>
+
+<main class="relative flex-1 overflow-x-hidden bg-[#0B1524]">
+  <!-- Atmósfera general -->
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 h-[32rem] bg-cover bg-center opacity-20"
+    style="background-image: url('/avengers-bg.jpg')"
+  ></div>
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 h-[32rem]
+           bg-gradient-to-b from-[#0B1524]/55 via-[#0B1524]/85 to-[#0B1524]"
+  ></div>
+
+  <div class="relative mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
+    <!-- Cabecera del agente -->
+    <section
+      class="flex flex-col items-center gap-5 rounded-2xl border border-[#243B6B]
+             border-t-2 border-t-[#B51F2E] bg-[#172A46]/75 p-5
+             shadow-2xl shadow-black/30 backdrop-blur-md sm:flex-row sm:p-7"
+      aria-labelledby="command-center-title"
+    >
+      <div class="relative shrink-0">
+        <div class="absolute -inset-1 rounded-full bg-[#B51F2E]/70 blur-sm"></div>
+        <img
+          [src]="userData?.profileImage || 'assets/default-avatar.jpg'"
+          alt="Foto de perfil"
+          class="relative h-24 w-24 rounded-full border-2 border-[#E3E8ED]/80 object-cover shadow-xl sm:h-28 sm:w-28"
+        />
+        <span
+          class="absolute bottom-1 right-1 h-4 w-4 rounded-full border-2 border-[#172A46]
+                 bg-[#B51F2E] shadow-[0_0_10px_rgba(181,31,46,0.9)]"
+          aria-hidden="true"
+        ></span>
+      </div>
+
+      <div class="min-w-0 flex-1 text-center sm:text-left">
+        <div class="flex items-center justify-center gap-3 sm:justify-start">
+          <span class="h-px w-8 bg-[#B51F2E]"></span>
+          <span class="text-xs font-bold tracking-[0.24em] text-[#B51F2E]">
+            S.H.I.E.L.D.
+          </span>
+        </div>
+        <h1
+          id="command-center-title"
+          class="mt-3 text-xl font-bold tracking-wide text-[#E3E8ED] sm:text-2xl lg:text-3xl"
+        >
+          AGENT COMMAND CENTER
+        </h1>
+        <p class="mt-2 text-sm text-[#B8C4D6] sm:text-base">
+          Bienvenido,
+          <span class="font-semibold text-[#E3E8ED]">{{ userData?.username || 'Invitado' }}</span>
+        </p>
+        <span
+          class="mt-3 inline-flex items-center gap-2 rounded-full border border-[#243B6B]
+                 bg-[#0B1524]/55 px-3 py-1 text-xs font-semibold tracking-[0.14em] text-[#B8C4D6]"
+        >
+          <span class="h-1.5 w-1.5 rounded-full bg-[#B51F2E]"></span>
+          AGENTE ACTIVO
+        </span>
+      </div>
+
+      <a href="/user-profile" class="btn-shield w-full text-center text-sm tracking-[0.1em] sm:w-auto">
+        VER PERFIL
+      </a>
+    </section>
+
+    <!-- Operaciones disponibles -->
+    <app-carousel class="mt-8 block min-w-0"></app-carousel>
+
+    <!-- Recursos del agente -->
+    <section class="mt-10" aria-labelledby="agent-resources-title">
+      <div class="mb-5 flex items-end justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="h-px w-8 bg-[#B51F2E]"></span>
+            <span class="text-xs font-bold tracking-[0.24em] text-[#B51F2E]">
+              S.H.I.E.L.D.
+            </span>
+          </div>
+          <h2
+            id="agent-resources-title"
+            class="mt-3 text-xl font-bold tracking-wide text-[#E3E8ED] sm:text-2xl"
+          >
+            RECURSOS DEL AGENTE
+          </h2>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <app-fisio-um class="block h-full min-w-0"></app-fisio-um>
+        <app-events-um class="block h-full min-w-0"></app-events-um>
+      </div>
+    </section>
   </div>
-
-  <!-- Carrusel envuelto en fondo de imagen y recuadro blanco -->
-  <app-carousel></app-carousel>
-
-  <!-- Aquí debajo irán los otros componentes -->
-  <div class="w-full flex flex-col md:flex-row gap-6 mt-6">
-    <div class="flex-none w-full md:w-[68%] flex">
-      <app-fisio-um class="w-full h-full"></app-fisio-um>
-    </div>
-    <div class="flex-none w-full md:w-[31%] flex">
-      <app-events-um class="w-full h-full"></app-events-um>
-    </div>
-  </div>
-
-  <div>
-
-  </div>
-  
-</div>
+</main>
 
 <app-footer></app-footer>
-
-
+</div>
