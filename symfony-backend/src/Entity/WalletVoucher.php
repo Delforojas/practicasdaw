@@ -14,52 +14,29 @@ class WalletVoucher
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $wallet_id = null;
-
-    #[ORM\Column]
-    private ?int $voucher_id = null;
-
-    #[ORM\Column]
     private ?int $remaining_uses = null;
 
-    
-    #[ORM\ManyToOne(targetEntity: Wallet::class, inversedBy: 'walletVoucher')]
-    #[ORM\JoinColumn(name: 'wallet_id', referencedColumnName: 'id', nullable: false, onDelete: 'CASCADE')]
+    #[ORM\ManyToOne(targetEntity: Wallet::class, inversedBy: 'walletVouchers')]
+    #[ORM\JoinColumn(
+        name: 'wallet_id',
+        referencedColumnName: 'id',
+        nullable: false,
+        onDelete: 'CASCADE'
+    )]
     private ?Wallet $wallet = null;
 
-    
-    #[ORM\ManyToOne(targetEntity: Voucher::class, inversedBy: 'walletVoucher')]
-    #[ORM\JoinColumn(name: 'voucher_id', referencedColumnName: 'id', nullable: false, onDelete: 'CASCADE')]
+    #[ORM\ManyToOne(targetEntity: Voucher::class, inversedBy: 'walletVouchers')]
+    #[ORM\JoinColumn(
+        name: 'voucher_id',
+        referencedColumnName: 'id',
+        nullable: false,
+        onDelete: 'CASCADE'
+    )]
     private ?Voucher $voucher = null;
-
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getWalletId(): ?int
-    {
-        return $this->wallet_id;
-    }
-
-    public function setWalletId(int $wallet_id): static
-    {
-        $this->wallet_id = $wallet_id;
-
-        return $this;
-    }
-
-    public function getVoucherId(): ?int
-    {
-        return $this->voucher_id;
-    }
-
-    public function setVoucherId(int $voucher_id): static
-    {
-        $this->voucher_id = $voucher_id;
-
-        return $this;
     }
 
     public function getRemainingUses(): ?int
@@ -74,5 +51,27 @@ class WalletVoucher
         return $this;
     }
 
-}
+    public function getWallet(): ?Wallet
+    {
+        return $this->wallet;
+    }
 
+    public function setWallet(?Wallet $wallet): static
+    {
+        $this->wallet = $wallet;
+
+        return $this;
+    }
+
+    public function getVoucher(): ?Voucher
+    {
+        return $this->voucher;
+    }
+
+    public function setVoucher(?Voucher $voucher): static
+    {
+        $this->voucher = $voucher;
+
+        return $this;
+    }
+}
