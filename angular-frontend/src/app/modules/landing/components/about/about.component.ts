@@ -7,23 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AboutComponent {
 
-  title = '¿Qué ofrecemos?';
+  title = '¿Estás preparado para la iniciativa?';
   primaryText = `
-    En Sannu Fisioterapia, ofrecemos una experiencia única donde puedes encontrar equilibrio físico y mental. 
-    Desde clases de Yoga, Pilates y Ejercicio Terapéutico, consultas de Fisioterapia. 
-    Nuestro espacio multifuncional está diseñado para satisfacer todas tus necesidades de bienestar y trabajo.
+    S.H.I.E.L.D. busca agentes capaces de enfrentarse a amenazas que van más allá de lo convencional. Accede a misiones, entrenamientos especializados y tecnología desarrollada para proteger el planeta.
   `;
 
   secondaryText = `
-    Sumérgete en la tranquilidad de nuestras clases, donde nuestros instructores expertos te guiarán a través de prácticas 
-    que te ayudarán a fortalecer tu cuerpo y calmar tu mente. Con una variedad de estilos y niveles, hay algo para todos, 
-    ya seas un principiante entusiasta o un yogui experimentado.
+    Forma equipo con los Vengadores, mejora tus habilidades y participa en operaciones junto a héroes como Iron Man, Thor, Captain America o Black Widow.
   `;
 
   extraText = `
-    Además de nuestras clases y consultas, ofrecemos alquiler de salas completamente equipadas para tus necesidades profesionales. 
-    Ya sea que estés organizando una reunión, un taller o un evento, nuestras salas son el lugar perfecto para inspirar la creatividad 
-    y fomentar la colaboración.
+    Cada misión supondrá un nuevo desafío. Consulta las operaciones disponibles y descubre dónde se necesita tu ayuda.
   `;
 
 }

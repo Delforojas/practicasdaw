@@ -12,11 +12,11 @@ export class CarouselComponent {
   
 
   images = [
-    { name: 'Yoga Multinivel', img: 'user-menu-assets/carrousel-yogamultinivel.webp', path: '/clase/multinivel' },
-    { name: 'Yoga Flow', img: 'user-menu-assets/carrousel-yogaflow.webp', path: '/clase/flow' },
-    { name: 'Rocket Yoga', img: 'user-menu-assets/carrousel-rocketyoga.webp', path: '/clase/rocket' },
-    { name: 'Yin Yoga', img: 'user-menu-assets/carrousel-yinyoga.webp', path: '/clase/yin' },
-    { name: 'Pilates', img: 'user-menu-assets/carrousel-pilates.webp', path: '/clase/pilates' },
+    { name: 'Capitan América', img: 'user-menu-assets/carrousel-yogamultinivel.webp', path: '/clase/multinivel' },
+    { name: 'Ironman', img: 'user-menu-assets/carrousel-yogaflow.webp', path: '/clase/flow' },
+    { name: 'Thor', img: 'user-menu-assets/carrousel-rocketyoga.webp', path: '/clase/rocket' },
+    { name: 'Viuda Negra', img: 'user-menu-assets/carrousel-yinyoga.webp', path: '/clase/yin' },
+    { name: 'Spiderman', img: 'user-menu-assets/carrousel-pilates.webp', path: '/clase/pilates' },
   ];
 
 
