@@ -62,6 +62,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     private ?string $email = null;
 
+    #[ORM\Column(length: 255, unique: true, nullable: true)]
+    private ?string $googleId = null;
+
     #[ORM\Column(length: 255)]
 
     private ?string $password = null;
@@ -232,6 +235,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
 
+    }
+
+    public function getGoogleId(): ?string
+    {
+        return $this->googleId;
+    }
+
+    public function setGoogleId(?string $googleId): static
+    {
+        $this->googleId = $googleId;
+
+        return $this;
     }
 
     public function getPassword(): ?string

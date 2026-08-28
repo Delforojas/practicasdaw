@@ -5,8 +5,12 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Enum\RoleEnum;
 use Doctrine\ORM\EntityManagerInterface;
+use Google\Client as GoogleClient;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +24,94 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class UserController extends AbstractController
     {
+            #[Route('/api/auth/google', name: 'auth_google', methods: ['POST'])]
+            public function googleLogin(
+                Request $request,
+                EntityManagerInterface $entityManager,
+                UserPasswordHasherInterface $passwordHasher,
+                JWTTokenManagerInterface $jwtManager,
+                #[Autowire('%env(GOOGLE_CLIENT_ID)%')] string $googleClientId
+            ): JsonResponse {
+                $data = json_decode($request->getContent(), true);
+                $credential = $data['credential'] ?? null;
+
+                if (!is_string($credential) || $credential === '') {
+                    return new JsonResponse(['error' => 'Google credential requerida.'], Response::HTTP_BAD_REQUEST);
+                }
+
+                try {
+                    $googleClient = new GoogleClient(['client_id' => $googleClientId]);
+                    $payload = $googleClient->verifyIdToken($credential);
+                } catch (\Throwable) {
+                    return new JsonResponse(['error' => 'Credencial de Google inválida.'], Response::HTTP_UNAUTHORIZED);
+                }
+
+                if (!is_array($payload)
+                    || !is_string($payload['sub'] ?? null)
+                    || !is_string($payload['email'] ?? null)
+                    || ($payload['email_verified'] ?? false) !== true
+                    || !in_array($payload['iss'] ?? null, ['accounts.google.com', 'https://accounts.google.com'], true)
+                    || !is_int($payload['exp'] ?? null)
+                    || $payload['exp'] <= time()
+                    || ($payload['aud'] ?? null) !== $googleClientId
+                ) {
+                    return new JsonResponse(['error' => 'Credencial de Google inválida.'], Response::HTTP_UNAUTHORIZED);
+                }
+
+                $googleId = $payload['sub'];
+                $email = $payload['email'];
+                $user = $entityManager->getRepository(User::class)->findOneBy(['googleId' => $googleId]);
+
+                if (!$user) {
+                    $user = $entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
+
+                    if ($user) {
+                        if ($user->getGoogleId() !== null && $user->getGoogleId() !== $googleId) {
+                            return new JsonResponse(['error' => 'La cuenta no se puede vincular.'], Response::HTTP_CONFLICT);
+                        }
+                        $user->setGoogleId($googleId);
+                    }
+                }
+
+                if (!$user) {
+                    $name = is_string($payload['name'] ?? null) && $payload['name'] !== ''
+                        ? $payload['name']
+                        : $email;
+                    $emailPrefix = strtolower((string) strtok($email, '@'));
+                    $baseUsername = preg_replace('/[^a-z0-9_]/', '', $emailPrefix) ?: 'googleuser';
+                    $username = substr($baseUsername, 0, 140) . '_' . bin2hex(random_bytes(4));
+
+                    $user = (new User())
+                        ->setFullName($name)
+                        ->setUserName($username)
+                        ->setEmail($email)
+                        ->setGoogleId($googleId)
+                        ->setRole(RoleEnum::USER)
+                        ->setCreatedAt(new \DateTimeImmutable());
+
+                    $user->setPassword($passwordHasher->hashPassword($user, bin2hex(random_bytes(32))));
+
+                    $entityManager->persist($user);
+                    $entityManager->flush();
+                } elseif ($user->getGoogleId() === $googleId) {
+                    $entityManager->flush();
+                }
+
+                $jwt = $jwtManager->create($user);
+                $response = new JsonResponse(['message' => 'Inicio de sesión correcto.']);
+                $response->headers->setCookie(
+                    Cookie::create('authtoken')
+                        ->withValue($jwt)
+                        ->withHttpOnly(true)
+                        ->withSecure(true)
+                        ->withSameSite(Cookie::SAMESITE_NONE)
+                        ->withPath('/')
+                        ->withExpires(strtotime('+10 hours'))
+                );
+
+                return $response;
+            }
+
             #[Route('/api/register', name: 'user_register', methods: ['POST'])]
             public function register(
                 Request $request,
