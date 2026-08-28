@@ -22,10 +22,12 @@ class PasswordResetTokenRepository extends ServiceEntityRepository
      
     public function findValidToken(string $token): ?PasswordResetToken
     {
+        $tokenHash = hash('sha256', $token);
+
         return $this->createQueryBuilder('prt')
             ->andWhere('prt.token = :token')
             ->andWhere('prt.expiresAt > :now')
-            ->setParameter('token', $token)
+            ->setParameter('token', $tokenHash)
             ->setParameter('now', new \DateTimeImmutable())
             ->getQuery()
             ->getOneOrNullResult();
