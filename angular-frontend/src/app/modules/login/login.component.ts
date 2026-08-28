@@ -50,9 +50,10 @@ declare global {
  styleUrls: []
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   form!: FormGroup;
   isLoading = false;
+  private googleInitialized = false;
 
   constructor(
     private fb: FormBuilder,
@@ -70,6 +71,10 @@ export class LoginComponent {
     ]]
   });
     }
+
+  ngOnInit(): void {
+    this.initializeGoogle();
+  }
 
 submit() {
   if (this.form.invalid) {
@@ -110,16 +115,31 @@ submit() {
 get email() { return this.form.get('email'); }
  get password() { return this.form.get('password'); }
 
- loginWithGoogle(): void {
-   if (!environment.googleClientId || !window.google) {
+  private initializeGoogle(attempt = 0): void {
+    if (this.googleInitialized) {
+      return;
+    }
+
+    if (window.google?.accounts?.id) {
+      window.google.accounts.id.initialize({
+        client_id: environment.googleClientId,
+        callback: (response) => this.handleGoogleCredential(response.credential),
+      });
+      this.googleInitialized = true;
+      return;
+    }
+
+    if (attempt < 20) {
+      window.setTimeout(() => this.initializeGoogle(attempt + 1), 100);
+    }
+  }
+
+  loginWithGoogle(): void {
+   if (!this.googleInitialized || !window.google?.accounts?.id) {
      showToast(this.toast, 'unexpectedError');
      return;
    }
 
-   window.google.accounts.id.initialize({
-     client_id: environment.googleClientId,
-     callback: (response) => this.handleGoogleCredential(response.credential),
-   });
    window.google.accounts.id.prompt();
  }
 
