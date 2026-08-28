@@ -78,7 +78,7 @@ final class PasswordResetController extends AbstractController
 
         // Datos del correo
         $emailMessage = (new Email())
-            ->from('no-reply@tuapp.com')
+            ->from('avengers@delforojas.es')
             ->to($user->getEmail())
             ->subject('Restablecer contraseña')
             ->text("Haz clic en el siguiente enlace para restablecer tu contraseña: $resetUrl");
