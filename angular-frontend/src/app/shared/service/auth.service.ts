@@ -34,6 +34,16 @@ register(formData: FormData) {
    );
  }
 
+ googleLogin(credential: string): Observable<User> {
+   return this.http.post<{ message: string }>(AUTH_ROUTES.google(), { credential }, {
+     withCredentials: true,
+     headers: { 'Content-Type': 'application/json' },
+   }).pipe(
+     switchMap(() => this.http.get<User>(AUTH_ROUTES.me(), { withCredentials: true })),
+     tap(user => this.userSubject.next(user)),
+   );
+ }
+
 
 
 
