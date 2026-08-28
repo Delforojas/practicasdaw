@@ -1,7 +1,7 @@
 
 export const environment = {
    production: true,
-   endpointUrl: 'https://produrl/api/v1',
+   endpointUrl: 'https://avengers-training.alwaysdata.net/api',
    base: 'https://produrl',
-   googleClientId: '',
+   googleClientId: '406865853730-eeobl0hooutcd86ms7r0ruqnrfva2nko.apps.googleusercontent.com'
 };
