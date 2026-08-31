@@ -1,0 +1,49 @@
+## 🎨 Frontend — Angular + TypeScript + Tailwind CSS
+
+- Desarrollo de una **Single Page Application** con Angular.
+- Uso de TypeScript.
+- Arquitectura basada en componentes standalone.
+- Creación de componentes reutilizables.
+- Uso de servicios Angular para centralizar:
+  - autenticación;
+  - navegación;
+  - comunicación HTTP;
+  - usuario autenticado;
+  - mensajes;
+  - notificaciones.
+- Comunicación con API REST mediante `HttpClient`.
+- Gestión de autenticación mediante `withCredentials`.
+- Uso de Observables.
+- Uso de RxJS.
+- Gestión del estado del usuario mediante `BehaviorSubject`.
+- Implementación de formularios reactivos.
+- Validación de:
+  - email;
+  - contraseñas;
+  - campos obligatorios;
+  - teléfono;
+  - confirmación de contraseña;
+  - reglas personalizadas.
+- Gestión de estados de carga.
+- Gestión de errores del backend.
+- Sistema reutilizable de Toasts.
+- Navegación según rol del usuario.
+- Desarrollo de flujos de:
+  - login;
+  - registro;
+  - login con Google;
+  - recuperación de contraseña;
+  - restablecimiento de contraseña;
+  - perfil de usuario;
+  - navegación privada.
+- Centralización de rutas de API.
+- Refactorización de servicios.
+- Refactorización de Observables.
+- Organización modular del código.
+- Mejora de mantenibilidad y legibilidad.
+- Desarrollo de interfaces responsive.
+- Adaptación para móvil, tablet y escritorio.
+- Diseño de interfaz mediante Tailwind CSS.
+- Mejora progresiva de UX/UI.
+
+---
