@@ -14,12 +14,23 @@
 # Database dumps
 
 *.sql
+*.dump
+*.bak
+*.backup
+*.sql.gz
+*.dump.gz
+
+# Private keys
+
+*.pem
+*.key
 
 # Dependencies
 
 **/node_modules/
 
 **/vendor/
+**/dist/
 
 # OS
 
@@ -49,12 +60,20 @@ symfony-backend/public/uploads/*
 # Logs
 
 *.log
+**/logs/
 
 npm-debug.log*
 
 yarn-debug.log*
 
 yarn-error.log*
+
+# Temporary files
+
+*.tmp
+*.temp
+*.swp
+*~
 
 # Testing / coverage
 
