@@ -5,10 +5,16 @@ namespace App\EventListener;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 
 use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 class JWTAuthenticationSuccessHandler
 
 {
+
+    public function __construct(
+        #[Autowire('%kernel.environment%')] private string $environment
+    ) {
+    }
 
     public function onAuthenticationSuccess(AuthenticationSuccessEvent $event): void
 
@@ -22,6 +28,10 @@ class JWTAuthenticationSuccessHandler
 
         }
 
+        $data = $event->getData();
+        unset($data['token']);
+        $event->setData($data);
+
         $event->getResponse()->headers->setCookie(
 
             Cookie::create('authtoken')
@@ -30,9 +40,9 @@ class JWTAuthenticationSuccessHandler
 
                 ->withHttpOnly(true)
 
-                ->withSecure(true)
+                ->withSecure($this->environment === 'prod')
 
-                ->withSameSite(Cookie::SAMESITE_NONE)
+                ->withSameSite(Cookie::SAMESITE_STRICT)
 
                 ->withPath('/')
 

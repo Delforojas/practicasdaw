@@ -10,6 +10,8 @@ use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -103,8 +105,8 @@ class UserController extends AbstractController
                     Cookie::create('authtoken')
                         ->withValue($jwt)
                         ->withHttpOnly(true)
-                        ->withSecure(true)
-                        ->withSameSite(Cookie::SAMESITE_NONE)
+                        ->withSecure($request->isSecure())
+                        ->withSameSite(Cookie::SAMESITE_STRICT)
                         ->withPath('/')
                         ->withExpires(strtotime('+10 hours'))
                 );
@@ -128,13 +130,33 @@ class UserController extends AbstractController
                 $city       = $request->request->get('city');
                 $email      = $request->request->get('email');
                 $password   = $request->request->get('password');
-                /** @var UploadedFile $imageFile */
-                $imageFile = $request->files->get('profileImage');
+                 $imageFile = $request->files->get('profileImage');
+                 $imageExtension = null;
 
 
-                if (!$email || !$password || !$fullName || !$username) {
-                    return new JsonResponse(['error' => 'Missing required fields.'], Response::HTTP_BAD_REQUEST);
-                }
+                 if (!$email || !$password || !$fullName || !$username) {
+                     return new JsonResponse(['error' => 'Missing required fields.'], Response::HTTP_BAD_REQUEST);
+                 }
+
+                 if ($imageFile !== null) {
+                     if (!$imageFile instanceof UploadedFile || !$imageFile->isValid()) {
+                         return new JsonResponse(['error' => 'Invalid profile image.'], Response::HTTP_BAD_REQUEST);
+                     }
+
+                     if (($imageFile->getSize() ?? 0) > 5 * 1024 * 1024) {
+                         return new JsonResponse(['error' => 'Profile image is too large.'], Response::HTTP_REQUEST_ENTITY_TOO_LARGE);
+                     }
+
+                     $imageExtension = [
+                         'image/jpeg' => 'jpg',
+                         'image/png' => 'png',
+                         'image/webp' => 'webp',
+                     ][$imageFile->getMimeType() ?? ''] ?? null;
+
+                     if ($imageExtension === null) {
+                         return new JsonResponse(['error' => 'Unsupported profile image type.'], Response::HTTP_UNSUPPORTED_MEDIA_TYPE);
+                     }
+                 }
 
 
                 $existingUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
@@ -163,14 +185,18 @@ class UserController extends AbstractController
                 $user->setRole(RoleEnum::USER);
                 $user->setCreatedAt(new \DateTimeImmutable());
 
-                 if ($imageFile) {
-                    $newFilename = uniqid().'.'.$imageFile->guessExtension();
-                    $imageFile->move(
-                        $this->getParameter('uploads_directory'), // definido en services.yaml
-                        $newFilename
-                    );
-                    $user->setProfileImage($newFilename);
-                }
+                  if ($imageFile instanceof UploadedFile && $imageExtension !== null) {
+                     $newFilename = bin2hex(random_bytes(16)).'.'.$imageExtension;
+                     try {
+                         $imageFile->move(
+                             $this->getParameter('uploads_directory'),
+                             $newFilename
+                         );
+                     } catch (FileException) {
+                         return new JsonResponse(['error' => 'Profile image could not be stored.'], Response::HTTP_INTERNAL_SERVER_ERROR);
+                     }
+                     $user->setProfileImage($newFilename);
+                 }
 
 
                 $entityManager->persist($user);

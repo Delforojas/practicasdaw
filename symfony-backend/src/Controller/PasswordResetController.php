@@ -88,7 +88,7 @@ final class PasswordResetController extends AbstractController
         try {
             $mailer->send($emailMessage);
         } catch(\Throwable $e){
-            return $this->json(['message' => 'Mailer error', 'error' => $e->getMessage()], 500);
+            return $this->json(['message' => 'No se pudo enviar el correo.'], 500);
         }
         
         return $this->json(['message' => 'Email enviado si existe una cuenta con ese correo.']);
