@@ -1,0 +1,42 @@
+## ⚙️ Backend — Symfony + PHP + PostgreSQL
+
+- Desarrollo y mantenimiento de una **API REST** con Symfony.
+- Implementación de autenticación mediante **JWT**.
+- Gestión de sesión mediante cookies.
+- Implementación de **Role-Based Access Control**.
+- Gestión de diferentes perfiles:
+  - `ROLE_ADMIN`
+  - `ROLE_TEACHER`
+  - `ROLE_USER`
+- Creación de endpoints protegidos.
+- Validación de acceso según rol.
+- Desarrollo de endpoints para:
+  - registro de usuarios;
+  - login tradicional;
+  - login con Google;
+  - obtención del usuario autenticado;
+  - cierre de sesión;
+  - recuperación de contraseña;
+  - restablecimiento de contraseña;
+  - formularios;
+  - reservas;
+  - operaciones relacionadas con la lógica de negocio.
+- Desarrollo de servicios reutilizables en Symfony.
+- Centralización de lógica de negocio.
+- Gestión de errores HTTP.
+- Respuestas JSON consistentes.
+- Validación de datos recibidos desde frontend.
+- Uso de **Doctrine ORM**.
+- Creación y mantenimiento de entidades.
+- Desarrollo de repositories.
+- Gestión de relaciones entre entidades.
+- Creación y ejecución de migraciones.
+- Constraints únicos en base de datos.
+- Consultas SQL.
+- Uso de PostgreSQL como base de datos principal.
+- PostgreSQL local mediante Docker.
+- PostgreSQL en producción mediante Neon.
+- Documentación y prueba de endpoints con Postman.
+- Uso de Symfony Console para diagnóstico y mantenimiento.
+
+---
