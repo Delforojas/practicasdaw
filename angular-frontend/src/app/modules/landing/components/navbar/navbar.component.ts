@@ -23,12 +23,11 @@ export class NavbarComponent {
 
   navLinks = [
     { path: '/', fragment: 'inicio', label: 'Inicio' },
-    { path: '/', fragment: 'servicios', label: 'Servicios' },
-    { path: '/', fragment: 'about', label: '¿Qué ofrecemos?' },
-    { path: '/', fragment: 'horarios', label: 'Horarios y Tarifas' },
-    { path: '/', fragment: 'ourTeams', label: 'Sobre Nosotros' },
-    { path: '/', fragment: 'schedules', label: 'Horarios' },
-    { path: 'login', fragment: undefined, label: 'Log in' },
+    { path: '/', fragment: 'servicios', label: 'Centro de Operaciones' },
+    { path: '/', fragment: 'about', label: 'La Iniciativa' },
+    { path: '/', fragment: 'ourTeams', label: 'Amenazas' },
+    { path: '/', fragment: 'horarios', label: 'Cronologia' },
+    { path: 'login', fragment: undefined, label: 'Acceso S.H.I.E.L.D.' },
   ];
 
   activeFragment: string | null = null;

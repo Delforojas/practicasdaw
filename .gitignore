@@ -1,0 +1,75 @@
+
+# Environment / secrets
+
+.env
+
+.env.local
+
+.env.*.local
+
+**/.env.local
+
+**/.env.*.local
+
+# Database dumps
+
+*.sql
+
+# Dependencies
+
+**/node_modules/
+
+**/vendor/
+
+# OS
+
+.DS_Store
+
+# IDE
+
+.idea/
+
+# Symfony
+
+symfony-backend/var/
+
+# Angular
+
+angular-frontend/.angular/
+
+angular-frontend/dist/
+
+
+# User uploads
+
+symfony-backend/public/uploads/*
+
+!symfony-backend/public/uploads/.gitkeep
+
+# Logs
+
+*.log
+
+npm-debug.log*
+
+yarn-debug.log*
+
+yarn-error.log*
+
+# Testing / coverage
+
+coverage/
+
+angular-frontend/coverage/
+
+# IDE
+
+.vscode/*
+
+!.vscode/extensions.json
+
+!.vscode/settings.json
+
+# JWT keys
+
+symfony-backend/config/jwt/*.pem

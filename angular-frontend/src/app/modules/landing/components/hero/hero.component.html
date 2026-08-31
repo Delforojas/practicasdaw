@@ -1,30 +1,154 @@
-<div class="pt-5">
+<div
+  class="relative isolate min-h-[100svh] w-full overflow-hidden bg-cover bg-center"
+  style="background-image: url('/landing-assets/images-hero/hero.webp')"
+>
+  <!-- Capas de contraste que conservan visible la imagen -->
+  <div class="absolute inset-0 -z-10 bg-[#0B1524]/20"></div>
   <div
-    class="relative h-screen w-full bg-cover bg-center flex flex-col justify-between"
-    style="background-image: url('/landing-assets/images-hero/hero.webp')">
-  
-    <!-- Logo -->
-    <div class="flex flex-col items-center md:items-end px-6 md:pr-40 pt-20 md:pt-40 text-center md:text-right">
+    class="absolute inset-0 -z-10 bg-gradient-to-b from-[#0B1524]/10 via-[#0B1524]/30 to-[#0B1524]/90
+           lg:bg-gradient-to-r lg:from-transparent lg:via-[#0B1524]/25 lg:to-[#0B1524]/90"
+  ></div>
+
+  <div
+    class="mx-auto flex min-h-[100svh] w-full max-w-7xl items-center
+           px-4 pb-10 pt-24 sm:px-6 sm:pb-12 sm:pt-28 lg:px-10 lg:py-28 xl:px-12"
+  >
+    <!-- Logo, información y acciones -->
+    <div class="flex w-full flex-col items-center lg:ml-auto lg:max-w-xl lg:items-start">
       <img
-        src="/landing-assets/images-hero/logo-sannu.webp"
-        alt="Logotipo de la empresa. Sannu fisioterapia y yoga"
-        class="w-60 sm:w-72 md:w-[350px] lg:w-[450px] mb-6"/>
-  
-    </div>
-  
-    <!-- Botones -->
-    <div class="flex flex-col sm:flex-row justify-center gap-6 sm:gap-10 pb-16 sm:pb-20 md:pb-32">
-      <button
-        class="px-6 sm:px-8 md:px-10 py-2 mx-2 sm:py-3 bg-[#485C46]  text-white text-base sm:text-lg rounded-3xl shadow-md hover:bg-green-700 transition"
-        routerLink="/register">
-        Regístrate
-      </button>
-      <button
-        class="px-6 sm:px-8 md:px-10 py-2 mx-2 sm:py-3 bg-[#485C46]  text-white text-base sm:text-lg rounded-3xl shadow-md hover:bg-green-700 transition"
-        routerLink="">
-        Contacto
-      </button>
+        src="/landing-assets/images-hero/avengers-logo.webp"
+        alt="Logotipo de Avengers"
+        class="mb-3 w-36 object-contain drop-shadow-2xl sm:mb-4 sm:w-44 md:w-52 lg:w-56 xl:w-64"
+      />
+
+      <!-- Proyecto demostrativo -->
+      <section
+        class="w-full rounded-2xl border border-[#B8C4D6]/20 border-l-2 border-l-[#B51F2E]
+               bg-[#0B1524]/75 p-5 shadow-2xl shadow-black/35 backdrop-blur-md
+               sm:p-6 lg:p-7"
+      >
+        <div class="mb-3 flex items-center gap-3">
+          <span class="h-px w-8 bg-[#B51F2E]"></span>
+          <span class="text-xs font-bold uppercase tracking-[0.2em] text-[#B51F2E] sm:text-sm">
+            Proyecto demostrativo
+          </span>
+        </div>
+
+        <h2
+          class="max-w-lg text-2xl font-bold leading-tight text-[#E3E8ED]
+                 sm:text-3xl lg:text-[2.15rem]"
+        >
+          De mis prácticas DAW a un proyecto Full Stack
+        </h2>
+
+        <div class="mt-4 max-w-[62ch] space-y-3 text-sm leading-6 sm:text-[0.95rem]">
+          <p class="text-[#E3E8ED]">
+            Esta aplicación web tiene un propósito exclusivamente demostrativo.
+            Ha sido desarrollada para mostrar de forma práctica las habilidades
+            y conocimientos que adquirí durante mis prácticas profesionales del
+            ciclo de Desarrollo de Aplicaciones Web (DAW).
+          </p>
+
+          <p class="text-[#B8C4D6]">
+            El proyecto parte de una aplicación desarrollada durante mis
+            prácticas y ha sido adaptado posteriormente a una temática de
+            Los Vengadores, manteniendo y ampliando su arquitectura y
+            funcionalidades con fines de portfolio.
+          </p>
+
+          <p class="text-[#B8C4D6]">
+            Incluye desarrollo backend con Symfony y PostgreSQL, creación y
+            consumo de APIs REST, autenticación JWT y control de acceso por
+            roles, desarrollo frontend con Angular y TailwindCSS, gestión de
+            formularios, servicios reutilizables, manejo centralizado de
+            errores y despliegue mediante Docker.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="btn-avengers mt-5 text-xs tracking-wider sm:text-sm"
+          (click)="openTechnicalDetails()"
+        >
+          VER DETALLES TÉCNICOS
+        </button>
+      </section>
+
+      <!-- Acciones secundarias -->
+      <div class="mt-4 flex w-full flex-col gap-3 sm:flex-row sm:justify-end">
+        <button
+          class="btn-avengers w-full sm:w-auto sm:min-w-36"
+          routerLink="/register"
+        >
+          Crear cuenta
+        </button>
+
+        <button
+          class="btn-shield w-full sm:w-auto sm:min-w-36"
+          routerLink="/login"
+        >
+          Iniciar sesión
+        </button>
+      </div>
     </div>
   </div>
-</div>
 
+
+  <!-- =============================== -->
+  <!-- MODAL DETALLES TÉCNICOS -->
+  <!-- =============================== -->
+
+  @if (showTechnicalDetails) {
+
+    <!-- Overlay -->
+    <div
+      class="fixed inset-0 z-[100]
+             bg-black/80
+             flex items-center justify-center
+             p-4"
+      (click)="closeTechnicalDetails()"
+    >
+
+      <!-- Ventana -->
+      <div
+        class="relative
+               w-full max-w-6xl
+               max-h-[90vh]
+               overflow-y-auto
+               bg-[#0B1524]
+               rounded-2xl
+               border border-[#243B6B]
+               border-t-4 border-t-[#B51F2E]
+               shadow-2xl"
+        (click)="$event.stopPropagation()"
+      >
+
+        <!-- Cerrar -->
+        <button
+          type="button"
+          aria-label="Cerrar detalles técnicos"
+          class="absolute top-5 right-5 z-10
+                 w-11 h-11
+                 flex items-center justify-center
+                 rounded-full
+                 bg-[#243B6B]
+                 text-white text-xl
+                 hover:bg-[#B51F2E]
+                 hover:scale-105
+                 transition-all duration-300"
+          (click)="closeTechnicalDetails()"
+        >
+          ✕
+        </button>
+
+
+        <!-- Componente detalles técnicos -->
+        <app-technical-details></app-technical-details>
+
+      </div>
+
+    </div>
+
+  }
+
+</div>

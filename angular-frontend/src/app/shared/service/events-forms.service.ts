@@ -1,16 +1,27 @@
 import { Injectable } from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
 
+import { environment } from '../../environments/environments';
+
 @Injectable({
+
   providedIn: 'root',
+
 })
+
 export class EventsFormsService {
-  private apiUrl = 'http://localhost:8001/api/contact'; // Url de symfony
+
+  private apiUrl = `${environment.endpointUrl}/contact`;
 
   constructor(private http: HttpClient) {}
 
   sendEventForm(data: any): Observable<any> {
+
     return this.http.post(this.apiUrl, data);
+
   }
+
 }

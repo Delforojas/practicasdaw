@@ -1,6 +1,13 @@
-
 export const environment = {
- production: false,
- endpointUrl: 'http://localhost:8001/api',
- base: 'http://localhost:8001'
- };
+
+  production: true,
+
+  endpointUrl: 'http://localhost:8001/api',
+
+  base: 'https://avengers-training.alwaysdata.net',
+
+  googleClientId: '406865853730-eeobl0hooutcd86ms7r0ruqnrfva2nko.apps.googleusercontent.com',
+
+
+
+};
